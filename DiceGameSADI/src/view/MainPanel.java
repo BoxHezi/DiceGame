@@ -4,18 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainPanel extends JPanel {
+    private JSplitPane splitPane = new JSplitPane();
+
     public MainPanel() {
-        try {
-            setLayout(new BorderLayout());
-            ImageIcon imageIcon = new ImageIcon("DiceGameSADI/images/dice1.png");
-            JLabel label = new JLabel(imageIcon);
+        initializeMainPanel();
+        /*Image image = imageIcon.getImage();
+        label.setIcon(new ImageIcon(image.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));*/
+    }
 
-            Image image = imageIcon.getImage();
-            label.setIcon(new ImageIcon(image.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+    private void initializeMainPanel() {
+        setLayout(new BorderLayout());
 
-            this.add(label, BorderLayout.CENTER);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        splitPane.setResizeWeight(0.6);
+        //disable resize left and right panel
+        splitPane.setEnabled(true);
+
+        splitPane.setRightComponent(new DicePanel());
+
+        add(splitPane, BorderLayout.CENTER);
     }
 }

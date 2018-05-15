@@ -25,6 +25,8 @@ public class MainFrame extends JFrame {
         setMinimumSize(new Dimension(200, 200 ));
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //set frame appears in the centre of the screen
+        setLocationRelativeTo(null);
         setVisible(true);
 
         setJMenuBar(menuBar);

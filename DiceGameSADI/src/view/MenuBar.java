@@ -3,13 +3,10 @@ package view;
 import javax.swing.*;
 
 public class MenuBar extends JMenuBar {
-    private JMenu file;
-    private JMenuItem exit;
+    private JMenu file = new JMenu("File");
+    private JMenuItem exit = new JMenuItem("Exit");
 
     public MenuBar() {
-        file = new JMenu("File");
-        exit = new JMenuItem("Exit");
-
         file.add(exit);
         add(file);
     }
