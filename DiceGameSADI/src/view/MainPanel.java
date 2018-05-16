@@ -15,9 +15,8 @@ public class MainPanel extends JPanel {
     private void initializeMainPanel() {
         setLayout(new BorderLayout());
 
-        splitPane.setResizeWeight(0.5);
         //disable resize left and right panel
-        splitPane.setEnabled(true);
+        splitPane.setEnabled(false);
 
         splitPane.setRightComponent(new DicePanel());
         splitPane.setLeftComponent(new GameDetailPanel());

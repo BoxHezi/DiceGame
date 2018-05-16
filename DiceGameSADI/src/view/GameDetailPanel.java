@@ -1,6 +1,5 @@
 package view;
 
-import model.SimplePlayer;
 import model.interfaces.Player;
 
 import javax.swing.*;
