@@ -20,10 +20,10 @@ public class MainFrame extends JFrame {
         /*int i = JOptionPane.showConfirmDialog(null, "Welcome to Dice Game!\nReady to Play?",
                 "Dice Game", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);*/
         // exit when user select no
-        int i = JOptionPane.showConfirmDialog(null, GAME_RULE);
+        /*int i = JOptionPane.showConfirmDialog(null, GAME_RULE);
         if (i == JOptionPane.NO_OPTION || i == JOptionPane.CANCEL_OPTION) {
             System.exit(1);
-        }
+        }*/
 
         mainPanel = new MainPanel();
         menuBar = new MenuBar();

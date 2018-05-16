@@ -20,7 +20,8 @@ public class GameDetailPanel extends JSplitPane {
 
         //add player to JList example
         /*Player player = new SimplePlayer("1", "hello", 100);
-        playerModel.add(0, player);*/
+        playerModel.add(0, player);
+        playerModel.add(1, new SimplePlayer("2", "world", 1000));*/
 
         splitPane.setLeftComponent(playerList);
         splitPane.setRightComponent(textArea);
