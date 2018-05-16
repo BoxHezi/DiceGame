@@ -1,12 +1,15 @@
 package view;
 
+import model.SimplePlayer;
 import model.interfaces.Player;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GameDetailPanel extends JSplitPane {
-    private JList<Player> players = new JList<>();
+    private DefaultListModel playerModel = new DefaultListModel();
+
+    private JList playerList = new JList(playerModel);
     private JTextArea textArea = new JTextArea();
 
     public GameDetailPanel() {
@@ -15,7 +18,11 @@ public class GameDetailPanel extends JSplitPane {
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         splitPane.setResizeWeight(0.5);
 
-        splitPane.setLeftComponent(players);
+        //add player to JList example
+        /*Player player = new SimplePlayer("1", "hello", 100);
+        playerModel.add(0, player);*/
+
+        splitPane.setLeftComponent(playerList);
         splitPane.setRightComponent(textArea);
 
         add(splitPane, BorderLayout.CENTER);

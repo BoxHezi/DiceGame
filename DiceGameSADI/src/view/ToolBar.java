@@ -1,5 +1,7 @@
 package view;
 
+import controller.ToolBarController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,6 +21,8 @@ public class ToolBar extends JToolBar {
         add(betAmount);
         add(placeBet);
         add(roll);
+
+        addMouseListener(new ToolBarController());
 
         setBorder(BorderFactory.createLineBorder(Color.WHITE));
     }

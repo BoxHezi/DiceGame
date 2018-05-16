@@ -1,5 +1,6 @@
 package view;
 
+import controller.MenuController;
 import controller.MouseController;
 
 import javax.swing.*;
@@ -12,8 +13,9 @@ public class MenuBar extends JMenuBar {
     private JMenuItem addPlayer = new JMenuItem("Add New Player");
 
     public MenuBar() {
-        file.add(exit);
+        file.addMenuListener(new MenuController());
         exit.addMouseListener(new MouseController());
+        file.add(exit);
         add(file);
 
         option.add(addPlayer);
