@@ -3,7 +3,6 @@ package controller;
 import view.AddPlayerDialog;
 import view.MenuBar;
 
-import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import java.awt.event.ActionEvent;
@@ -18,11 +17,7 @@ public class MenuController implements MenuListener, ActionListener {
 
     @Override
     public void menuSelected(MenuEvent event) {
-        JMenu menu = (JMenu) event.getSource();
-        System.out.println(menu.getText());
-        for (int i = 0; i < menu.getItemCount(); i++) {
-            System.out.println(menu.getItem(i).getText());
-        }
+
     }
 
     @Override

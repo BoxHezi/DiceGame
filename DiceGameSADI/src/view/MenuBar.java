@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuBar extends JMenuBar {
+
     private static final String EXIT_COMMAND = "exit";
     private static final String ADD_PLAYER_COMMAND = "add player";
 

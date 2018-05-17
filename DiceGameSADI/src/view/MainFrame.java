@@ -1,13 +1,29 @@
 package view;
 
+import model.GameEngineCallbackGUI;
+import model.interfaces.GameEngine;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
+    private GameEngineCallbackGUI gui;
+
     private MainPanel mainPanel;
     private MenuBar menuBar;
     private StatusBar statusBar;
     private ToolBar toolBar;
+
+    /*public MainFrame(GameEngineCallbackGUI gui) {
+        this.gui = gui;
+
+        mainPanel = new MainPanel();
+        menuBar = new MenuBar();
+        statusBar = new StatusBar();
+        toolBar = new ToolBar();
+
+        initialiseMainFrame();
+    }*/
 
     public MainFrame() {
         mainPanel = new MainPanel();
@@ -33,5 +49,9 @@ public class MainFrame extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
         add(toolBar, BorderLayout.NORTH);
         add(statusBar, BorderLayout.SOUTH);
+    }
+
+    public GameEngine getGameEngine() {
+        return gui.getGameEngine();
     }
 }
