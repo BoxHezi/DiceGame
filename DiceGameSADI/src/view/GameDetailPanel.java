@@ -10,7 +10,7 @@ public class GameDetailPanel extends JSplitPane {
     private DefaultListModel playerModel = new DefaultListModel();
 
     private JList playerList = new JList(playerModel);
-    private JTextArea textArea = new JTextArea();
+    private JTextArea textArea = new JTextArea("Game Progress:\n");
 
     public GameDetailPanel() {
         setLayout(new BorderLayout());

@@ -1,5 +1,6 @@
 package controller;
 
+import view.AddPlayerDialog;
 import view.MenuBar;
 
 import javax.swing.*;
@@ -36,9 +37,11 @@ public class MenuController implements MenuListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        System.out.println(event.getActionCommand());
         if (event.getActionCommand().equalsIgnoreCase(menuBar.getExitCommand())) {
             System.exit(1);
+        } else if (event.getActionCommand().equalsIgnoreCase(menuBar.getAddPlayerCommand())) {
+            System.out.println("add player");
+            new AddPlayerDialog();
         }
     }
 }
