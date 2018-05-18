@@ -23,4 +23,12 @@ public class MainPanel extends JPanel {
 
         add(splitPane, BorderLayout.CENTER);
     }
+
+    public Component getRightComponent() {
+        return splitPane.getRightComponent();
+    }
+
+    public Component getLeftComponent() {
+        return splitPane.getLeftComponent();
+    }
 }

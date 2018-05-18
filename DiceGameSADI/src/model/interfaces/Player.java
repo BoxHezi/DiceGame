@@ -1,5 +1,7 @@
 package model.interfaces;
 
+import view.implgui.interfaces.GameEngineCallback;
+
 /**
  * Assignment interface for SADI representing the player
  * to be implemented by SimplePlayer class with the following constructor:
@@ -47,14 +49,14 @@ public interface Player {
     /**
      * @return a DicePair containing both dice values (updated from the
      * GameEngine)
-     * @see model.interfaces.GameEngineCallback
+     * @see GameEngineCallback
      */
     public abstract DicePair getRollResult();
 
     /**
      * @param rollResult a DicePair containing both dice values (updated from the
      *                   GameEngine)
-     * @see model.interfaces.GameEngineCallback
+     * @see GameEngineCallback
      */
     public abstract void setRollResult(DicePair rollResult);
 

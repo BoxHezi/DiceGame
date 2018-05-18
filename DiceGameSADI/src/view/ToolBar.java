@@ -1,6 +1,7 @@
 package view;
 
 import controller.ToolBarController;
+import model.interfaces.GameEngine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,9 +15,11 @@ public class ToolBar extends JToolBar {
     private JButton placeBet = new JButton(PLACE_BET_COMMAND);
     private JButton roll = new JButton(ROLL_COMMAND);
 
-    private ToolBarController toolBarController = new ToolBarController(this);
+    private ToolBarController toolBarController;
 
-    public ToolBar() {
+    public ToolBar(GameEngine gameEngine) {
+        toolBarController = new ToolBarController(this, gameEngine);
+
         initializeElement();
         setLayout(new GridLayout(1, 4));
         setFloatable(false);
@@ -54,15 +57,15 @@ public class ToolBar extends JToolBar {
         return BET_AMOUNT_COMMAND;
     }
 
-    public JTextField getBetAmount() {
+    public JTextField getBetAmountText() {
         return betAmount;
     }
 
-    public JButton getPlaceBet() {
+    public JButton getPlaceBetButton() {
         return placeBet;
     }
 
-    public JButton getRoll() {
+    public JButton getRollButton() {
         return roll;
     }
 }

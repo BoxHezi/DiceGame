@@ -1,5 +1,7 @@
 package model.interfaces;
 
+import view.implgui.interfaces.GameEngineCallback;
+
 import java.util.Collection;
 
 /**
@@ -43,7 +45,7 @@ public interface GameEngine {
      *                       rolling
      * @param delayIncrement how much the dice slow down (delay gets longer) after each
      *                       roll/tumble
-     * @see model.interfaces.GameEngineCallback
+     * @see GameEngineCallback
      */
     public abstract void rollPlayer(Player player, int initialDelay, int finalDelay, int delayIncrement);
 

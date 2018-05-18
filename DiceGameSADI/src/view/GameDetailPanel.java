@@ -1,6 +1,7 @@
 package view;
 
 import model.SimplePlayer;
+import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 import javax.swing.*;
@@ -19,13 +20,25 @@ public class GameDetailPanel extends JSplitPane {
         splitPane.setResizeWeight(0.5);
 
         //add player to JList example
-        /*Player player = new SimplePlayer("1", "hello", 100);
+        Player player = new SimplePlayer("1", "hello", 100);
         playerModel.add(0, player);
-        playerModel.add(1, new SimplePlayer("2", "world", 1000));*/
+        playerModel.add(1, new SimplePlayer("2", "world", 1000));
 
         splitPane.setLeftComponent(playerList);
         splitPane.setRightComponent(textArea);
 
         add(splitPane, BorderLayout.CENTER);
+    }
+
+    public JList getPlayerList() {
+        return playerList;
+    }
+
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+
+    public void addPlayer(Player player) {
+
     }
 }

@@ -21,7 +21,12 @@ public class MenuController implements ActionListener {
         if (event.getActionCommand().equalsIgnoreCase(menuBar.getExitCommand())) {
             System.exit(1);
         } else if (event.getActionCommand().equalsIgnoreCase(menuBar.getAddPlayerCommand())) {
-            new AddPlayerDialog(gameEngine);
+            AddPlayerDialog playerDialog = new AddPlayerDialog(gameEngine);
+            addPlayerToList(playerDialog);
         }
+    }
+
+    private void addPlayerToList(AddPlayerDialog player) {
+        
     }
 }

@@ -26,11 +26,12 @@ public class AddPlayerDialog extends JOptionPane {
                 return;
             }
         } while (id.matches("\\s+") || id.equals(""));
-        /*for (Player player : players) {
+
+        for (Player player : players) {
             if (player.getPlayerId().equalsIgnoreCase(id)) {
                 System.out.println("ID existed! Try Again!");
             }
-        }*/
+        }
         inputName(gameEngine);
     }
 
@@ -57,7 +58,7 @@ public class AddPlayerDialog extends JOptionPane {
 
     private void confirmBox(GameEngine gameEngine) {
         int confirm = showConfirmDialog(null, "Your ID is: " + id + "\nYour name is: "
-                + name + "\nYour pointStr is: " + pointStr, "Confirm", YES_NO_OPTION);
+                + name + "\nYour point is: " + pointStr, "Confirm", YES_NO_OPTION);
         if (confirm == YES_OPTION) {
             Player newPlayer = new SimplePlayer(id, name, Integer.valueOf(pointStr));
             gameEngine.addPlayer(newPlayer);
@@ -66,10 +67,18 @@ public class AddPlayerDialog extends JOptionPane {
     }
 
     private ArrayList<Player> getAllPlayers(GameEngine gameEngine) {
-        players = (ArrayList<Player>) gameEngine.getAllPlayers();
-        if (players == null) {
-            return new ArrayList<>();
-        }
-        return players;
+        return (ArrayList<Player>) gameEngine.getAllPlayers();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPoint() {
+        return Integer.valueOf(pointStr);
     }
 }

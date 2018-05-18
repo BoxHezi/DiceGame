@@ -1,15 +1,18 @@
 package controller;
 
+import model.interfaces.GameEngine;
 import view.ToolBar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ToolBarController implements ActionListener {
+    private GameEngine gameEngine;
     private ToolBar toolBar;
 
-    public ToolBarController(ToolBar toolBar) {
+    public ToolBarController(ToolBar toolBar, GameEngine gameEngine) {
         this.toolBar = toolBar;
+        this.gameEngine = gameEngine;
     }
 
     @Override

@@ -6,20 +6,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-    private GameEngine gameEngine;
-
     private MainPanel mainPanel;
-    private MenuBar menuBar;
+    private MenuBar menu;
     private StatusBar statusBar;
     private ToolBar toolBar;
 
     public MainFrame(GameEngine gameEngine) {
-        this.gameEngine = gameEngine;
-
         mainPanel = new MainPanel();
-        menuBar = new MenuBar(gameEngine);
+        menu = new MenuBar(gameEngine);
         statusBar = new StatusBar();
-        toolBar = new ToolBar();
+        toolBar = new ToolBar(gameEngine);
 
         initialiseMainFrame();
     }
@@ -35,13 +31,25 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        setJMenuBar(menuBar);
+        setJMenuBar(menu);
         add(mainPanel, BorderLayout.CENTER);
         add(toolBar, BorderLayout.NORTH);
         add(statusBar, BorderLayout.SOUTH);
     }
 
-    public GameEngine getGameEngine() {
-        return gameEngine;
+    public MainPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public MenuBar getMenu() {
+        return menu;
+    }
+
+    public StatusBar getStatusBar() {
+        return statusBar;
+    }
+
+    public ToolBar getToolBar() {
+        return toolBar;
     }
 }

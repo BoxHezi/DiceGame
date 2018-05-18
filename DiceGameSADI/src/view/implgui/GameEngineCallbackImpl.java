@@ -2,7 +2,7 @@ package view.implgui;
 
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
-import model.interfaces.GameEngineCallback;
+import view.implgui.interfaces.GameEngineCallback;
 import model.interfaces.Player;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * Skeleton example implementation of GameEngineCallback showing Java logging behaviour
  *
  * @author Caspar Ryan
- * @see model.interfaces.GameEngineCallback
+ * @see GameEngineCallback
  */
 public class GameEngineCallbackImpl implements GameEngineCallback {
     private Logger logger = Logger.getLogger("assignment1");

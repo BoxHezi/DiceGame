@@ -1,7 +1,7 @@
 package model;
 
 import model.interfaces.GameEngine;
-import model.interfaces.GameEngineCallback;
+import view.implgui.interfaces.GameEngineCallback;
 import model.interfaces.Player;
 
 import java.util.*;

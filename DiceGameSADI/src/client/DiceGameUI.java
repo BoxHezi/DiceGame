@@ -12,18 +12,13 @@ import javax.swing.*;
 public class DiceGameUI {
 
     public static void main(String[] args) {
-        final GameEngine gameEngine = new GameEngineImpl();
-        gameEngine.addGameEngineCallback(new GameEngineCallbackGUI());
-//        gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
-
-        Player[] players = new Player[]
-                {new SimplePlayer("1", "The Roller", 1000)};
-        gameEngine.addPlayer(players[0]);
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                final GameEngine gameEngine = new GameEngineImpl();
+                gameEngine.addGameEngineCallback(new GameEngineCallbackGUI(gameEngine));
                 MainFrame mainFrame = new MainFrame(gameEngine);
+//        gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
             }
         });
     }
