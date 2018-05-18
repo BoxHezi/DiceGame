@@ -2,8 +2,8 @@ package view.implgui;
 
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
-import view.implgui.interfaces.GameEngineCallback;
 import model.interfaces.Player;
+import view.implgui.interfaces.GameEngineCallback;
 
 import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;

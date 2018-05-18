@@ -12,10 +12,10 @@ public class MainFrame extends JFrame {
     private ToolBar toolBar;
 
     public MainFrame(GameEngine gameEngine) {
-        mainPanel = new MainPanel();
-        menu = new MenuBar(gameEngine);
-        statusBar = new StatusBar();
-        toolBar = new ToolBar(gameEngine);
+        mainPanel = new MainPanel(this);
+        menu = new MenuBar(this, gameEngine);
+        statusBar = new StatusBar(this);
+        toolBar = new ToolBar(this, gameEngine);
 
         initialiseMainFrame();
     }

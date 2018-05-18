@@ -1,10 +1,11 @@
 package model;
 
 import model.interfaces.GameEngine;
-import view.implgui.interfaces.GameEngineCallback;
 import model.interfaces.Player;
+import view.implgui.interfaces.GameEngineCallback;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class GameEngineImpl implements GameEngine {
     private ArrayList<Player> playerList = new ArrayList<>();

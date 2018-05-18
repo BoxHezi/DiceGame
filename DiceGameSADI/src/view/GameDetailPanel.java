@@ -8,12 +8,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameDetailPanel extends JSplitPane {
+    private MainFrame mainFrame;
+
     private DefaultListModel playerModel = new DefaultListModel();
 
     private JList playerList = new JList(playerModel);
     private JTextArea textArea = new JTextArea("Game Progress:\n");
 
-    public GameDetailPanel() {
+    public GameDetailPanel(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);

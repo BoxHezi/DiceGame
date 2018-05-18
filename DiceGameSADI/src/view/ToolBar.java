@@ -17,8 +17,8 @@ public class ToolBar extends JToolBar {
 
     private ToolBarController toolBarController;
 
-    public ToolBar(GameEngine gameEngine) {
-        toolBarController = new ToolBarController(this, gameEngine);
+    public ToolBar(MainFrame mainFrame, GameEngine gameEngine) {
+        toolBarController = new ToolBarController(mainFrame, gameEngine);
 
         initializeElement();
         setLayout(new GridLayout(1, 4));

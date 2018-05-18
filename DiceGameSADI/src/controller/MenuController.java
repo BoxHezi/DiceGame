@@ -1,7 +1,9 @@
 package controller;
 
 import model.interfaces.GameEngine;
+import model.interfaces.Player;
 import view.AddPlayerDialog;
+import view.MainFrame;
 import view.MenuBar;
 
 import java.awt.event.ActionEvent;
@@ -9,24 +11,19 @@ import java.awt.event.ActionListener;
 
 public class MenuController implements ActionListener {
     private GameEngine gameEngine;
-    private MenuBar menuBar;
+    private MainFrame mainFrame;
 
-    public MenuController(MenuBar menuBar, GameEngine gameEngine) {
-        this.menuBar = menuBar;
+    public MenuController(MainFrame mainFrame, GameEngine gameEngine) {
+        this.mainFrame = mainFrame;
         this.gameEngine = gameEngine;
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        if (event.getActionCommand().equalsIgnoreCase(menuBar.getExitCommand())) {
+        if (event.getActionCommand().equalsIgnoreCase(mainFrame.getMenu().getExitCommand())) {
             System.exit(1);
-        } else if (event.getActionCommand().equalsIgnoreCase(menuBar.getAddPlayerCommand())) {
-            AddPlayerDialog playerDialog = new AddPlayerDialog(gameEngine);
-            addPlayerToList(playerDialog);
+        } else if (event.getActionCommand().equalsIgnoreCase(mainFrame.getMenu().getAddPlayerCommand())) {
+            new AddPlayerDialog(mainFrame, gameEngine);
         }
-    }
-
-    private void addPlayerToList(AddPlayerDialog player) {
-        
     }
 }

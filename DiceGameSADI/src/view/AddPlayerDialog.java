@@ -8,13 +8,16 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class AddPlayerDialog extends JOptionPane {
+    private MainFrame mainFrame;
+
     private String id = "";
     private String name = "";
     private String pointStr = "";
 
     private ArrayList<Player> players;
 
-    public AddPlayerDialog(GameEngine gameEngine) {
+    public AddPlayerDialog(MainFrame mainFrame, GameEngine gameEngine) {
+        this.mainFrame = mainFrame;
         players = getAllPlayers(gameEngine);
         inputID(gameEngine);
     }

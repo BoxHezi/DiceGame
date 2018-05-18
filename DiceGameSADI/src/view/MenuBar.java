@@ -11,6 +11,8 @@ public class MenuBar extends JMenuBar {
     private static final String EXIT_COMMAND = "exit";
     private static final String ADD_PLAYER_COMMAND = "add player";
 
+    private MainFrame mainFrame;
+
     private ArrayList<JMenu> menus = new ArrayList<>();
 
     private JMenuItem exit = new JMenuItem("Exit");
@@ -19,8 +21,9 @@ public class MenuBar extends JMenuBar {
 
     private MenuController menuController;
 
-    public MenuBar(GameEngine gameEngine) {
-        menuController = new MenuController(this, gameEngine);
+    public MenuBar(MainFrame mainFrame, GameEngine gameEngine) {
+        this.mainFrame = mainFrame;
+        menuController = new MenuController(mainFrame, gameEngine);
 
         JMenu file = new JMenu("File");
         file.add(exit);
