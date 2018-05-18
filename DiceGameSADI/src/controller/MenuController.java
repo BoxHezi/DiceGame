@@ -1,33 +1,19 @@
 package controller;
 
+import model.interfaces.GameEngine;
 import view.AddPlayerDialog;
 import view.MenuBar;
 
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuController implements MenuListener, ActionListener {
+public class MenuController implements ActionListener {
+    private GameEngine gameEngine;
     private MenuBar menuBar;
 
-    public MenuController(MenuBar menuBar) {
+    public MenuController(MenuBar menuBar, GameEngine gameEngine) {
         this.menuBar = menuBar;
-    }
-
-    @Override
-    public void menuSelected(MenuEvent event) {
-
-    }
-
-    @Override
-    public void menuDeselected(MenuEvent event) {
-
-    }
-
-    @Override
-    public void menuCanceled(MenuEvent event) {
-
+        this.gameEngine = gameEngine;
     }
 
     @Override
@@ -35,8 +21,7 @@ public class MenuController implements MenuListener, ActionListener {
         if (event.getActionCommand().equalsIgnoreCase(menuBar.getExitCommand())) {
             System.exit(1);
         } else if (event.getActionCommand().equalsIgnoreCase(menuBar.getAddPlayerCommand())) {
-            System.out.println("add player");
-            new AddPlayerDialog();
+            new AddPlayerDialog(gameEngine);
         }
     }
 }

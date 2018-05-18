@@ -1,13 +1,13 @@
 package view;
 
 import controller.MenuController;
+import model.interfaces.GameEngine;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MenuBar extends JMenuBar {
-
     private static final String EXIT_COMMAND = "exit";
     private static final String ADD_PLAYER_COMMAND = "add player";
 
@@ -17,9 +17,11 @@ public class MenuBar extends JMenuBar {
 
     private JMenuItem addPlayer = new JMenuItem("Add New Player");
 
-    private MenuController menuController = new MenuController(this);
+    private MenuController menuController;
 
-    public MenuBar() {
+    public MenuBar(GameEngine gameEngine) {
+        menuController = new MenuController(this, gameEngine);
+
         JMenu file = new JMenu("File");
         file.add(exit);
         add(file);
@@ -42,7 +44,7 @@ public class MenuBar extends JMenuBar {
 
     private void assignController(List<JMenu> menus) {
         for (JMenu menu : menus) {
-            menu.addMenuListener(menuController);
+            menu.addActionListener(menuController);
             menu.getItem(0);
             for (int i = 0; i < menu.getItemCount(); i++) {
                 menu.getItem(i).addActionListener(menuController);
