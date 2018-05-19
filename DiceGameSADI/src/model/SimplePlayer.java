@@ -44,10 +44,10 @@ public class SimplePlayer implements Player {
 
     @Override
     public boolean placeBet(int bet) {
-        this.bet = bet;
         if (this.getPoints() < bet) {
             return false;
         }
+        this.bet = bet;
         this.setPoints(this.getPoints() - bet);
         return true;
     }

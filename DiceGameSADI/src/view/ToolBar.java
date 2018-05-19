@@ -43,6 +43,8 @@ public class ToolBar extends JToolBar {
         placeBet.addActionListener(toolBarController);
         roll.addActionListener(toolBarController);
         betAmount.addActionListener(toolBarController);
+
+        roll.setEnabled(false);
     }
 
     public String getPlaceBetCommand() {
