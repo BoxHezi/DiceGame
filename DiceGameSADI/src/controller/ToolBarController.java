@@ -26,35 +26,39 @@ public class ToolBarController extends JOptionPane implements ActionListener{
             System.out.println(player.getBet());
 
         } else if (event.getActionCommand().equalsIgnoreCase(mainFrame.getToolBar().getPlaceBetCommand())) {
-            //get player select
-            Player player = getSelectedPlayer();
-            boolean validate = validationCheck(player);
+            placeBet();
+        }
+    }
 
-            if (validate) {
-                //get bet amount placed
-                String pointStr;
-                int point = 0;
-                try {
-                    pointStr = String.valueOf(mainFrame.getToolBar().getBetAmountText().getText());
-                    point = Integer.valueOf(pointStr);
-                } catch (NumberFormatException e) {
-                    showMessageDialog(null, "Illegal amount, try again!");
-                }
+    private void placeBet() {
+        //get player select
+        Player player = getSelectedPlayer();
+        boolean validate = validationCheck(player);
 
-                int validaPoint = point;
-                new Thread() {
-                    public void run() {
-                        if (!gameEngine.placeBet(player, validaPoint)) {
-                            showMessageDialog(null, "Not enough point!");
-                        } else {
-                            showMessageDialog(null, "Bet placed!");
-                            mainFrame.getStatusBar().getRight().setText(String.valueOf(player.getPoints()));
-                            mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
-                            mainFrame.getToolBar().getRollButton().setEnabled(true);
-                        }
-                    }
-                }.start();
+        if (validate) {
+            //get bet amount placed
+            String pointStr;
+            int point = 0;
+            try {
+                pointStr = String.valueOf(mainFrame.getToolBar().getBetAmountText().getText());
+                point = Integer.valueOf(pointStr);
+            } catch (NumberFormatException e) {
+                showMessageDialog(null, "Illegal amount, try again!");
             }
+
+            int validaPoint = point;
+            new Thread() {
+                public void run() {
+                    if (!gameEngine.placeBet(player, validaPoint)) {
+                        showMessageDialog(null, "Not enough point!");
+                    } else {
+                        showMessageDialog(null, "Bet placed!");
+                        mainFrame.getStatusBar().getRight().setText(String.valueOf(player.getPoints()));
+                        mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
+                        mainFrame.getToolBar().getRollButton().setEnabled(true);
+                    }
+                }
+            }.start();
         }
     }
 
