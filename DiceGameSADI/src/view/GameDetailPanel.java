@@ -42,6 +42,7 @@ public class GameDetailPanel extends JSplitPane {
     }
 
     public void addPlayer(Player player) {
-
+        System.out.println(playerModel.getSize());
+        playerModel.add(playerModel.getSize(), player);
     }
 }

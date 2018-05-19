@@ -28,13 +28,15 @@ public class AddPlayerDialog extends JOptionPane {
             if (null == id || id.equals(String.valueOf(CANCEL_OPTION))) {
                 return;
             }
-        } while (id.matches("\\s+") || id.equals(""));
 
-        for (Player player : players) {
-            if (player.getPlayerId().equalsIgnoreCase(id)) {
-                System.out.println("ID existed! Try Again!");
+            for (Player player : players) {
+                if (player.getPlayerId().equalsIgnoreCase(id)) {
+                    id = "";
+                    showMessageDialog(null, "ID existed! Try Again!");
+                }
             }
-        }
+
+        } while (id.matches("\\s+") || id.equals(""));
         inputName(gameEngine);
     }
 
@@ -64,7 +66,13 @@ public class AddPlayerDialog extends JOptionPane {
                 + name + "\nYour point is: " + pointStr, "Confirm", YES_NO_OPTION);
         if (confirm == YES_OPTION) {
             Player newPlayer = new SimplePlayer(id, name, Integer.valueOf(pointStr));
+            //add player the GameEngine List
             gameEngine.addPlayer(newPlayer);
+
+            //add player to GUI for user to select
+            GameDetailPanel detailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+            detailPanel.addPlayer(newPlayer);
+
             System.out.println("Player added!");
         }
     }
