@@ -29,5 +29,19 @@ public class GameDetailController implements ListSelectionListener {
 
         StatusBar statusBar = mainFrame.getStatusBar();
         statusBar.displayPlayerInfo(selectedPlayer);
+
+        updateButtonStatus(selectedPlayer);
+    }
+
+    private void updateButtonStatus(Player player) {
+        int betAmount = player.getBet();
+        //set button status to let player do either place bet or roll
+        if (betAmount <= 0) {
+            mainFrame.getToolBar().getRollButton().setEnabled(false);
+            mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);
+        } else {
+            mainFrame.getToolBar().getRollButton().setEnabled(true);
+            mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
+        }
     }
 }
