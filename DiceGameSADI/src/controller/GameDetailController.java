@@ -4,6 +4,7 @@ import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.GameDetailPanel;
 import view.MainFrame;
+import view.StatusBar;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -25,5 +26,8 @@ public class GameDetailController implements ListSelectionListener {
         JList list = (JList) e.getSource();
         Player selectedPlayer = (Player) list.getSelectedValue();
         System.out.println(selectedPlayer.getPlayerName());
+
+        StatusBar statusBar = mainFrame.getStatusBar();
+        statusBar.displayPlayerInfo(selectedPlayer);
     }
 }

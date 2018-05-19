@@ -11,12 +11,6 @@ public class MainPanel extends JPanel {
 
     public MainPanel(MainFrame mainFrame, GameEngine gameEngine) {
         this.mainFrame = mainFrame;
-        initializeMainPanel(mainFrame, gameEngine);
-        /*Image image = imageIcon.getImage();
-        label.setIcon(new ImageIcon(image.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));*/
-    }
-
-    private void initializeMainPanel(MainFrame mainFrame, GameEngine gameEngine) {
         setLayout(new BorderLayout());
 
         splitPane.setResizeWeight(0.5);
@@ -27,6 +21,8 @@ public class MainPanel extends JPanel {
         splitPane.setLeftComponent(new GameDetailPanel(mainFrame, gameEngine));
 
         add(splitPane, BorderLayout.CENTER);
+        /*Image image = imageIcon.getImage();
+        label.setIcon(new ImageIcon(image.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));*/
     }
 
     public Component getRightComponent() {

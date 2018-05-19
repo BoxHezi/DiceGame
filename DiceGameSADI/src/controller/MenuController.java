@@ -24,6 +24,9 @@ public class MenuController implements ActionListener {
             System.exit(1);
         } else if (event.getActionCommand().equalsIgnoreCase(mainFrame.getMenu().getAddPlayerCommand())) {
             new AddPlayerDialog(mainFrame, gameEngine);
+        } else if (event.getActionCommand().equalsIgnoreCase(mainFrame.getMenu().getSaveGameCommand())) {
+            // output game info to file
+            System.out.println("Saving game");
         }
     }
 }

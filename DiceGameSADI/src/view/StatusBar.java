@@ -1,5 +1,8 @@
 package view;
 
+import model.interfaces.GameEngine;
+import model.interfaces.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,7 +13,7 @@ public class StatusBar extends JToolBar {
     private JLabel center = new JLabel(" Center");
     private JLabel right = new JLabel(" Right");
 
-    public StatusBar(MainFrame mainFrame) {
+    public StatusBar(MainFrame mainFrame, GameEngine gameEngine) {
         this.mainFrame = mainFrame;
 
         setLayout(new GridLayout(1, 3));
@@ -35,5 +38,11 @@ public class StatusBar extends JToolBar {
 
     public JLabel getRight() {
         return right;
+    }
+
+    public void displayPlayerInfo(Player player) {
+        left.setText(" " + player.getPlayerId());
+        center.setText(" " + player.getPlayerName());
+        right.setText(String.valueOf(" " + player.getPoints()));
     }
 }

@@ -10,11 +10,13 @@ import java.util.List;
 public class MenuBar extends JMenuBar {
     private static final String EXIT_COMMAND = "exit";
     private static final String ADD_PLAYER_COMMAND = "add player";
+    private static final String SAVE_GAME_COMMAND = "save game";
 
     private MainFrame mainFrame;
 
     private ArrayList<JMenu> menus = new ArrayList<>();
 
+    private JMenuItem saveGame = new JMenuItem("Save Game");
     private JMenuItem exit = new JMenuItem("Exit");
 
     private JMenuItem addPlayer = new JMenuItem("Add New Player");
@@ -23,9 +25,10 @@ public class MenuBar extends JMenuBar {
 
     public MenuBar(MainFrame mainFrame, GameEngine gameEngine) {
         this.mainFrame = mainFrame;
-        menuController = new MenuController(mainFrame, gameEngine);
+        this.menuController = new MenuController(mainFrame, gameEngine);
 
         JMenu file = new JMenu("File");
+        file.add(saveGame);
         file.add(exit);
         add(file);
 
@@ -39,6 +42,7 @@ public class MenuBar extends JMenuBar {
     }
 
     private void initializeMenuItem(List<JMenu> menus) {
+        saveGame.setActionCommand(SAVE_GAME_COMMAND);
         exit.setActionCommand(EXIT_COMMAND);
         addPlayer.setActionCommand(ADD_PLAYER_COMMAND);
 
@@ -48,7 +52,6 @@ public class MenuBar extends JMenuBar {
     private void assignController(List<JMenu> menus) {
         for (JMenu menu : menus) {
             menu.addActionListener(menuController);
-            menu.getItem(0);
             for (int i = 0; i < menu.getItemCount(); i++) {
                 menu.getItem(i).addActionListener(menuController);
             }
@@ -61,5 +64,9 @@ public class MenuBar extends JMenuBar {
 
     public String getAddPlayerCommand() {
         return ADD_PLAYER_COMMAND;
+    }
+
+    public String getSaveGameCommand() {
+        return SAVE_GAME_COMMAND;
     }
 }

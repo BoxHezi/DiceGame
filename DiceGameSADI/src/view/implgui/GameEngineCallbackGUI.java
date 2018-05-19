@@ -3,12 +3,15 @@ package view.implgui;
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.MainFrame;
 import view.implgui.interfaces.GameEngineCallback;
 
 public class GameEngineCallbackGUI implements GameEngineCallback {
     private GameEngine gameEngine;
+    private MainFrame mainFrame;
 
-    public GameEngineCallbackGUI(GameEngine gameEngine) {
+    public GameEngineCallbackGUI(MainFrame mainFrame, GameEngine gameEngine) {
+        this.mainFrame = mainFrame;
         this.gameEngine = gameEngine;
     }
 

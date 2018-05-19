@@ -6,8 +6,6 @@ import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 
 public class GameDetailPanel extends JSplitPane {
@@ -28,7 +26,7 @@ public class GameDetailPanel extends JSplitPane {
         splitPane.setResizeWeight(0.5);
 
         //add player to JList example
-        Player player = new SimplePlayer("1", "hello", 100);
+        Player player = new SimplePlayer("1", "hello", 1000);
         playerModel.add(0, player);
         playerModel.add(1, new SimplePlayer("2", "world", 1000));
 

@@ -18,7 +18,7 @@ public class MainFrame extends JFrame {
 
         mainPanel = new MainPanel(this, gameEngine);
         menu = new MenuBar(this, gameEngine);
-        statusBar = new StatusBar(this);
+        statusBar = new StatusBar(this, gameEngine);
         toolBar = new ToolBar(this, gameEngine);
 
         initialiseMainFrame();
