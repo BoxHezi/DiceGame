@@ -1,5 +1,7 @@
 package view;
 
+import model.interfaces.GameEngine;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,14 +9,14 @@ public class MainPanel extends JPanel {
     private JSplitPane splitPane = new JSplitPane();
     private MainFrame mainFrame;
 
-    public MainPanel(MainFrame mainFrame) {
+    public MainPanel(MainFrame mainFrame, GameEngine gameEngine) {
         this.mainFrame = mainFrame;
-        initializeMainPanel(mainFrame);
+        initializeMainPanel(mainFrame, gameEngine);
         /*Image image = imageIcon.getImage();
         label.setIcon(new ImageIcon(image.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));*/
     }
 
-    private void initializeMainPanel(MainFrame mainFrame) {
+    private void initializeMainPanel(MainFrame mainFrame, GameEngine gameEngine) {
         setLayout(new BorderLayout());
 
         splitPane.setResizeWeight(0.5);
@@ -22,7 +24,7 @@ public class MainPanel extends JPanel {
         splitPane.setEnabled(false);
 
         splitPane.setRightComponent(new DicePanel(mainFrame));
-        splitPane.setLeftComponent(new GameDetailPanel(mainFrame));
+        splitPane.setLeftComponent(new GameDetailPanel(mainFrame, gameEngine));
 
         add(splitPane, BorderLayout.CENTER);
     }

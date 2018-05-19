@@ -53,7 +53,6 @@ public class AddPlayerDialog extends JOptionPane {
     private void inputPoint(GameEngine gameEngine) {
         do {
             pointStr = showInputDialog("Please enter pointStr amount");
-            System.out.println("Point: " + pointStr);
             if (pointStr.equals(String.valueOf(CANCEL_OPTION))) {
                 return;
             }
@@ -72,8 +71,6 @@ public class AddPlayerDialog extends JOptionPane {
             //add player to GUI for user to select
             GameDetailPanel detailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
             detailPanel.addPlayer(newPlayer);
-
-            System.out.println("Player added!");
         }
     }
 

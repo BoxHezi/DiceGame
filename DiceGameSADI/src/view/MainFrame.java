@@ -6,13 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
+    private GameEngine gameEngine;
+
     private MainPanel mainPanel;
     private MenuBar menu;
     private StatusBar statusBar;
     private ToolBar toolBar;
 
     public MainFrame(GameEngine gameEngine) {
-        mainPanel = new MainPanel(this);
+        this.gameEngine = gameEngine;
+
+        mainPanel = new MainPanel(this, gameEngine);
         menu = new MenuBar(this, gameEngine);
         statusBar = new StatusBar(this);
         toolBar = new ToolBar(this, gameEngine);
@@ -51,5 +55,9 @@ public class MainFrame extends JFrame {
 
     public ToolBar getToolBar() {
         return toolBar;
+    }
+
+    public GameEngine getGameEngine() {
+        return gameEngine;
     }
 }
