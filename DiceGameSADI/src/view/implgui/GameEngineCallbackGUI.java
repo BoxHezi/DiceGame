@@ -18,14 +18,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 
     @Override
     public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
-                int totalDiceValue = dicePair.getDice1() + dicePair.getDice2();
-                dicePanel.getTotalValue().setText(String.valueOf(totalDiceValue));
-            }
-        });
+        rolling(dicePair);
     }
 
     @Override
@@ -35,19 +28,25 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 
     @Override
     public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine) {
+        rolling(dicePair);
+    }
+
+    @Override
+    public void houseResult(DicePair result, GameEngine gameEngine) {
+        displayResult(result);
+    }
+
+    private void rolling(DicePair dicePair) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
                 int totalDiceValue = dicePair.getDice1() + dicePair.getDice2();
                 dicePanel.getTotalValue().setText(String.valueOf(totalDiceValue));
+
+                dicePanel.updateDiceImg(dicePair);
             }
         });
-    }
-
-    @Override
-    public void houseResult(DicePair result, GameEngine gameEngine) {
-        displayResult(result);
     }
 
     private void displayResult(DicePair result) {
@@ -60,6 +59,8 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 
                 mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);
                 mainFrame.getToolBar().getRollButton().setEnabled(false);
+
+                dicePanel.updateDiceImg(result);
             }
         });
     }

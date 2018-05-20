@@ -1,5 +1,7 @@
 package view;
 
+import model.interfaces.DicePair;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,8 +15,8 @@ public class DicePanel extends JPanel {
             "DiceGameSADI/images/dice5.png",
             "DiceGameSADI/images/dice6.png"};
 
-    private JLabel dice1 = new JLabel(new ImageIcon("DiceGameSADI/images/dice1.png"));
-    private JLabel dice2 = new JLabel(new ImageIcon("DiceGameSADI/images/dice2.png"));
+    private JLabel dice1 = new JLabel(new ImageIcon(diceArray[0]));
+    private JLabel dice2 = new JLabel(new ImageIcon(diceArray[0]));
     private JLabel totalValue = new JLabel("0");
 
     public DicePanel(MainFrame mainFrame) {
@@ -48,5 +50,13 @@ public class DicePanel extends JPanel {
 
     public String[] getDiceArray() {
         return diceArray;
+    }
+
+    public void updateDiceImg(DicePair dicePair) {
+        int valueIndex1 = dicePair.getDice1() - 1;
+        int valueIndex2 = dicePair.getDice2() - 1;
+
+        dice1.setIcon(new ImageIcon(diceArray[valueIndex1]));
+        dice2.setIcon(new ImageIcon(diceArray[valueIndex2]));
     }
 }
