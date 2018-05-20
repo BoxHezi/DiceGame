@@ -9,8 +9,6 @@ import view.StatusBar;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GameDetailController implements ListSelectionListener {
     private GameEngine gameEngine;
@@ -28,23 +26,38 @@ public class GameDetailController implements ListSelectionListener {
         }
         JList list = (JList) e.getSource();
         Player selectedPlayer = (Player) list.getSelectedValue();
-        System.out.println(selectedPlayer.getPlayerName());
+        if (null != selectedPlayer) {
+            System.out.println(selectedPlayer.getPlayerName());
 
-        StatusBar statusBar = mainFrame.getStatusBar();
-        statusBar.displayPlayerInfo(selectedPlayer);
+            StatusBar statusBar = mainFrame.getStatusBar();
+            statusBar.displayPlayerInfo(selectedPlayer);
 
-        updateButtonStatus(selectedPlayer);
+            updateButtonStatus(selectedPlayer);
+        }
     }
 
     private void updateButtonStatus(Player player) {
+        boolean rolled = getPlayerRolledStatus(player);
+        System.out.println("rolled: " + rolled);
         int betAmount = player.getBet();
-        //set button status to let player do either place bet or roll
-        if (betAmount <= 0) {
-            mainFrame.getToolBar().getRollButton().setEnabled(false);
-            mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);
-        } else {
-            mainFrame.getToolBar().getRollButton().setEnabled(true);
+
+        //check if player roll dice in the round
+        if (rolled) {
             mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
+            mainFrame.getToolBar().getRollButton().setEnabled(false);
+        } else {
+            if (betAmount <=0 ) {
+                mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);
+                mainFrame.getToolBar().getRollButton().setEnabled(false);
+            } else {
+                mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
+                mainFrame.getToolBar().getRollButton().setEnabled(true);
+            }
         }
+    }
+
+    private boolean getPlayerRolledStatus(Player player) {
+        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        return gameDetailPanel.getPlayerRollMap().get(player);
     }
 }

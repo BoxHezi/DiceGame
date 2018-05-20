@@ -14,8 +14,8 @@ public class ToolBar extends JToolBar {
 
     private JTextField betAmount = new JTextField();
     private JButton placeBet = new JButton(PLACE_BET_COMMAND);
-    private JButton roll = new JButton(ROLL_COMMAND);
-    private JButton houseRoll = new JButton(HOUSE_ROLL_COMMAND);
+    private JButton rollButton = new JButton(ROLL_COMMAND);
+    private JButton houseRollButton = new JButton(HOUSE_ROLL_COMMAND);
 
     private ToolBarController toolBarController;
 
@@ -32,25 +32,25 @@ public class ToolBar extends JToolBar {
         add(logoLabel);
         add(betAmount);
         add(placeBet);
-        add(roll);
-        add(houseRoll);
+        add(rollButton);
+        add(houseRollButton);
 
         setBorder(BorderFactory.createLineBorder(Color.WHITE));
     }
 
     private void initializeElement() {
         placeBet.setActionCommand(PLACE_BET_COMMAND);
-        roll.setActionCommand(ROLL_COMMAND);
+        rollButton.setActionCommand(ROLL_COMMAND);
         betAmount.setActionCommand(BET_AMOUNT_COMMAND);
-        houseRoll.setActionCommand(HOUSE_ROLL_COMMAND);
+        houseRollButton.setActionCommand(HOUSE_ROLL_COMMAND);
 
         placeBet.addActionListener(toolBarController);
-        roll.addActionListener(toolBarController);
+        rollButton.addActionListener(toolBarController);
         betAmount.addActionListener(toolBarController);
-        houseRoll.addActionListener(toolBarController);
+        houseRollButton.addActionListener(toolBarController);
 
-        roll.setEnabled(false);
-        houseRoll.setEnabled(false);
+        rollButton.setEnabled(false);
+        houseRollButton.setEnabled(false);
     }
 
     public String getPlaceBetCommand() {
@@ -65,6 +65,10 @@ public class ToolBar extends JToolBar {
         return BET_AMOUNT_COMMAND;
     }
 
+    public String getHouseRollCommand() {
+        return HOUSE_ROLL_COMMAND;
+    }
+
     public JTextField getBetAmountText() {
         return betAmount;
     }
@@ -74,6 +78,10 @@ public class ToolBar extends JToolBar {
     }
 
     public JButton getRollButton() {
-        return roll;
+        return rollButton;
+    }
+
+    public JButton getHouseRollButton() {
+        return houseRollButton;
     }
 }

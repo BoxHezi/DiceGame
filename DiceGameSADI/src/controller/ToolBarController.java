@@ -8,6 +8,8 @@ import view.MainFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ToolBarController extends JOptionPane implements ActionListener {
     private GameEngine gameEngine;
@@ -22,9 +24,11 @@ public class ToolBarController extends JOptionPane implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         if (event.getActionCommand().equalsIgnoreCase(mainFrame.getToolBar().getRollCommand())) {
             //call roll dice method
-            rollDice();
+            rollDice(true);
         } else if (event.getActionCommand().equalsIgnoreCase(mainFrame.getToolBar().getPlaceBetCommand())) {
             placeBet();
+        } else if (event.getActionCommand().equalsIgnoreCase(mainFrame.getToolBar().getHouseRollCommand())) {
+            rollDice(false);
         }
     }
 
@@ -63,13 +67,29 @@ public class ToolBarController extends JOptionPane implements ActionListener {
         }
     }
 
-    private void rollDice() {
-        Player player = getSelectedPlayer();
-
+    private void rollDice(boolean isPlayer) {
         new Thread() {
             @Override
             public void run() {
-                gameEngine.rollPlayer(player, 0, 500, 20);
+                GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+                Player player = getSelectedPlayer();
+                if (isPlayer) {
+                    gameDetailPanel.updateRollStatus(player, true);
+
+                    //disable roll button to avoid the same player click it twice
+                    mainFrame.getToolBar().getRollButton().setEnabled(false);
+                    gameEngine.rollPlayer(player, 0, 100, 20);
+
+                    //enable house roll button after at least one player roll
+                    mainFrame.getToolBar().getHouseRollButton().setEnabled(canHouseRoll());
+                } else {
+                    gameEngine.rollHouse(0, 100, 20);
+
+                    //disable house roll button to avoid unwanted behaviors
+                    mainFrame.getToolBar().getHouseRollButton().setEnabled(false);
+                    //reset player roll status back to false to start a new round
+                    gameDetailPanel.resetRollStatus(gameEngine);
+                }
             }
         }.start();
     }
@@ -86,5 +106,16 @@ public class ToolBarController extends JOptionPane implements ActionListener {
         GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
         JList playerList = gameDetailPanel.getPlayerList();
         return (Player) playerList.getSelectedValue();
+    }
+
+    private boolean canHouseRoll() {
+        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        HashMap<Player, Boolean> playerRollStatus = gameDetailPanel.getPlayerRollMap();
+        for (Map.Entry<Player, Boolean> rolled : playerRollStatus.entrySet()) {
+            if (!rolled.getValue()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
