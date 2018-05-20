@@ -23,6 +23,9 @@ public class GameDetailController implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting()) {
+            return;
+        }
         JList list = (JList) e.getSource();
         Player selectedPlayer = (Player) list.getSelectedValue();
         System.out.println(selectedPlayer.getPlayerName());

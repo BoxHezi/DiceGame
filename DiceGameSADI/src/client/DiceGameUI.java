@@ -17,7 +17,7 @@ public class DiceGameUI {
             public void run() {
                 final GameEngine gameEngine = new GameEngineImpl();
                 MainFrame mainFrame = new MainFrame(gameEngine);
-                gameEngine.addGameEngineCallback(new GameEngineCallbackGUI(mainFrame, gameEngine));
+                gameEngine.addGameEngineCallback(new GameEngineCallbackGUI(mainFrame));
 //        gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
             }
         });

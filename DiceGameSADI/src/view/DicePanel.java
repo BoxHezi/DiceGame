@@ -45,4 +45,8 @@ public class DicePanel extends JPanel {
     public JLabel getTotalValue() {
         return totalValue;
     }
+
+    public String[] getDiceArray() {
+        return diceArray;
+    }
 }

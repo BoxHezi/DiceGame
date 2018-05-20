@@ -1,6 +1,5 @@
 package view;
 
-import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 import javax.swing.*;
@@ -9,40 +8,40 @@ import java.awt.*;
 public class StatusBar extends JToolBar {
     private MainFrame mainFrame;
 
-    private JLabel left = new JLabel(" Left");
-    private JLabel center = new JLabel(" Center");
-    private JLabel right = new JLabel(" Right");
+    private JLabel idStatus = new JLabel(" Left");
+    private JLabel nameStatus = new JLabel(" Center");
+    private JLabel pointStatus = new JLabel(" Right");
 
-    public StatusBar(MainFrame mainFrame, GameEngine gameEngine) {
+    public StatusBar(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
 
         setLayout(new GridLayout(1, 3));
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
-        left.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        center.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        right.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        idStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        nameStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        pointStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        add(left);
-        add(center);
-        add(right);
+        add(idStatus);
+        add(nameStatus);
+        add(pointStatus);
     }
 
-    public JLabel getLeft() {
-        return left;
+    public JLabel getIdStatus() {
+        return idStatus;
     }
 
-    public JLabel getCenter() {
-        return center;
+    public JLabel getNameStatus() {
+        return nameStatus;
     }
 
-    public JLabel getRight() {
-        return right;
+    public JLabel getPointStatus() {
+        return pointStatus;
     }
 
     public void displayPlayerInfo(Player player) {
-        left.setText(" " + player.getPlayerId());
-        center.setText(" " + player.getPlayerName());
-        right.setText(String.valueOf(" " + player.getPoints()));
+        idStatus.setText(" " + player.getPlayerId());
+        nameStatus.setText(" " + player.getPlayerName());
+        pointStatus.setText(String.valueOf(" " + player.getPoints()));
     }
 }

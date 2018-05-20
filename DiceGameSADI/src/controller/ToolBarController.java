@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ToolBarController extends JOptionPane implements ActionListener{
+public class ToolBarController extends JOptionPane implements ActionListener {
     private GameEngine gameEngine;
     private MainFrame mainFrame;
 
@@ -22,9 +22,7 @@ public class ToolBarController extends JOptionPane implements ActionListener{
     public void actionPerformed(ActionEvent event) {
         if (event.getActionCommand().equalsIgnoreCase(mainFrame.getToolBar().getRollCommand())) {
             //call roll dice method
-            Player player = getSelectedPlayer();
-            System.out.println(player.getBet());
-
+            rollDice();
         } else if (event.getActionCommand().equalsIgnoreCase(mainFrame.getToolBar().getPlaceBetCommand())) {
             placeBet();
         }
@@ -48,18 +46,32 @@ public class ToolBarController extends JOptionPane implements ActionListener{
 
             int validaPoint = point;
             new Thread() {
+                @Override
                 public void run() {
-                    if (!gameEngine.placeBet(player, validaPoint)) {
+                    boolean enough = gameEngine.placeBet(player, validaPoint);
+                    if (!enough) {
                         showMessageDialog(null, "Not enough point!");
-                    } else {
+                    } else if (validaPoint > 0) {
                         showMessageDialog(null, "Bet placed!");
-                        mainFrame.getStatusBar().getRight().setText(String.valueOf(player.getPoints()));
+                        mainFrame.getStatusBar().getPointStatus().setText(String.valueOf(player.getPoints()));
                         mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
                         mainFrame.getToolBar().getRollButton().setEnabled(true);
+                        mainFrame.getToolBar().getBetAmountText().setText("");
                     }
                 }
             }.start();
         }
+    }
+
+    private void rollDice() {
+        Player player = getSelectedPlayer();
+
+        new Thread() {
+            @Override
+            public void run() {
+                gameEngine.rollPlayer(player, 0, 500, 20);
+            }
+        }.start();
     }
 
     private boolean validationCheck(Player selectedPlayer) {
