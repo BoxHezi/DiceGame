@@ -6,15 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StatusBar extends JToolBar {
-    private MainFrame mainFrame;
-
     private JLabel idStatus = new JLabel(" Left");
     private JLabel nameStatus = new JLabel(" Center");
     private JLabel pointStatus = new JLabel(" Right");
 
     public StatusBar(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
-
         setLayout(new GridLayout(1, 3));
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 

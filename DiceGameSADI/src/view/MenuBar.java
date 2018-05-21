@@ -11,11 +11,11 @@ public class MenuBar extends JMenuBar {
     private static final String EXIT_COMMAND = "exit";
     private static final String ADD_PLAYER_COMMAND = "add player";
     private static final String SAVE_GAME_COMMAND = "save game";
-
-    private MainFrame mainFrame;
+    private static final String LOAD_GAME_COMMAND = "load game";
 
     private ArrayList<JMenu> menus = new ArrayList<>();
 
+    private JMenuItem loadGame = new JMenuItem("Load Game");
     private JMenuItem saveGame = new JMenuItem("Save Game");
     private JMenuItem exit = new JMenuItem("Exit");
 
@@ -24,10 +24,10 @@ public class MenuBar extends JMenuBar {
     private MenuController menuController;
 
     public MenuBar(MainFrame mainFrame, GameEngine gameEngine) {
-        this.mainFrame = mainFrame;
         this.menuController = new MenuController(mainFrame, gameEngine);
 
         JMenu file = new JMenu("File");
+        file.add(loadGame);
         file.add(saveGame);
         file.add(exit);
         add(file);
@@ -42,6 +42,7 @@ public class MenuBar extends JMenuBar {
     }
 
     private void initializeMenuItem(List<JMenu> menus) {
+        loadGame.setActionCommand(LOAD_GAME_COMMAND);
         saveGame.setActionCommand(SAVE_GAME_COMMAND);
         exit.setActionCommand(EXIT_COMMAND);
         addPlayer.setActionCommand(ADD_PLAYER_COMMAND);
@@ -68,5 +69,9 @@ public class MenuBar extends JMenuBar {
 
     public String getSaveGameCommand() {
         return SAVE_GAME_COMMAND;
+    }
+
+    public String getLoadGameCommand() {
+        return LOAD_GAME_COMMAND;
     }
 }

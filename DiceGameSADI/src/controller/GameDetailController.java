@@ -2,6 +2,7 @@ package controller;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.DicePanel;
 import view.GameDetailPanel;
 import view.MainFrame;
 import view.StatusBar;
@@ -11,12 +12,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class GameDetailController implements ListSelectionListener {
-    private GameEngine gameEngine;
     private MainFrame mainFrame;
 
     public GameDetailController(MainFrame mainFrame, GameEngine gameEngine) {
         this.mainFrame = mainFrame;
-        this.gameEngine = gameEngine;
     }
 
     @Override
@@ -32,11 +31,15 @@ public class GameDetailController implements ListSelectionListener {
             StatusBar statusBar = mainFrame.getStatusBar();
             statusBar.displayPlayerInfo(selectedPlayer);
 
-            updateButtonStatus(selectedPlayer);
+            updateUIStatus(selectedPlayer);
         }
     }
 
-    private void updateButtonStatus(Player player) {
+    /**
+     *  update UI for selected player to limit the player option
+     * @param player selected player
+     */
+    private void updateUIStatus(Player player) {
         boolean rolled = getPlayerRolledStatus(player);
         System.out.println("rolled: " + rolled);
         int betAmount = player.getBet();
@@ -45,6 +48,9 @@ public class GameDetailController implements ListSelectionListener {
         if (rolled) {
             mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
             mainFrame.getToolBar().getRollButton().setEnabled(false);
+
+            DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
+            dicePanel.setDiceImg(player);
         } else {
             if (betAmount <=0 ) {
                 mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);

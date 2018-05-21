@@ -1,13 +1,12 @@
 package view;
 
 import model.interfaces.DicePair;
+import model.interfaces.Player;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class DicePanel extends JPanel {
-    private MainFrame mainFrame;
-
     private String[] diceArray = new String[]{"DiceGameSADI/images/dice1.png",
             "DiceGameSADI/images/dice2.png",
             "DiceGameSADI/images/dice3.png",
@@ -20,7 +19,6 @@ public class DicePanel extends JPanel {
     private JLabel totalValue = new JLabel("0");
 
     public DicePanel(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
 
         JPanel dicePanel = new JPanel();
@@ -52,11 +50,24 @@ public class DicePanel extends JPanel {
         return diceArray;
     }
 
+    /**
+     *  update dice image to show the dice rolling
+     * @param dicePair dice pair to get dice result
+     */
     public void updateDiceImg(DicePair dicePair) {
         int valueIndex1 = dicePair.getDice1() - 1;
         int valueIndex2 = dicePair.getDice2() - 1;
 
         dice1.setIcon(new ImageIcon(diceArray[valueIndex1]));
         dice2.setIcon(new ImageIcon(diceArray[valueIndex2]));
+    }
+
+    /**
+     *  if the player selected has rolled already, show the dice result image
+     * @param player selected player
+     */
+    public void setDiceImg(Player player) {
+        DicePair playerResult = player.getRollResult();
+        updateDiceImg(playerResult);
     }
 }

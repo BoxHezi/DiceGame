@@ -52,7 +52,7 @@ public class AddPlayerDialog extends JOptionPane {
 
     private void inputPoint(GameEngine gameEngine) {
         do {
-            pointStr = showInputDialog("Please enter pointStr amount");
+            pointStr = showInputDialog("Please enter point amount");
             if (pointStr.equals(String.valueOf(CANCEL_OPTION))) {
                 return;
             }

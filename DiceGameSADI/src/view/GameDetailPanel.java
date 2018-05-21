@@ -1,7 +1,6 @@
 package view;
 
 import controller.GameDetailController;
-import model.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
@@ -11,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameDetailPanel extends JSplitPane {
-    private MainFrame mainFrame;
-
     private DefaultListModel<Player> playerModel = new DefaultListModel<>();
     private JList<Player> playerList = new JList<>(playerModel);
     private JTextArea textArea = new JTextArea("Game Progress:\n");
@@ -21,21 +18,12 @@ public class GameDetailPanel extends JSplitPane {
     private HashMap<Player, Boolean> playerRollMap = new HashMap<>();
 
     public GameDetailPanel(MainFrame mainFrame, GameEngine gameEngine) {
-        this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
 
         playerList.addListSelectionListener(new GameDetailController(mainFrame, gameEngine));
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         splitPane.setResizeWeight(0.5);
-
-        //initialize two default player
-        Player[] players = new Player[]
-                {new SimplePlayer("1", "The Roller", 1000), new SimplePlayer("2", "The Loser", 500)};
-        for (int i = 0; i < players.length; i++) {
-            gameEngine.addPlayer(players[i]);
-            playerModel.add(i, players[i]);
-        }
 
         splitPane.setLeftComponent(new JScrollPane(playerList));
         splitPane.setRightComponent(new JScrollPane(textArea));

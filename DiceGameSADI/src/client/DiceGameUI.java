@@ -1,11 +1,9 @@
 package client;
 
-import view.implgui.GameEngineCallbackGUI;
 import model.GameEngineImpl;
-import model.SimplePlayer;
 import model.interfaces.GameEngine;
-import model.interfaces.Player;
 import view.MainFrame;
+import view.implgui.GameEngineCallbackGUI;
 
 import javax.swing.*;
 
