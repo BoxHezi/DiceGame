@@ -25,8 +25,6 @@ public class GameDetailController implements ListSelectionListener {
         JList list = (JList) e.getSource();
         Player selectedPlayer = (Player) list.getSelectedValue();
         if (null != selectedPlayer) {
-            System.out.println(selectedPlayer.getPlayerName());
-
             StatusBar statusBar = mainFrame.getStatusBar();
             statusBar.displayPlayerInfo(selectedPlayer);
 
@@ -34,16 +32,15 @@ public class GameDetailController implements ListSelectionListener {
         }
     }
 
-    /**
-     *  update UI for selected player to limit the player option
+    /**K
+     * update UI for selected player to limit the player option
      * @param player selected player
      */
     private void updateUIStatus(Player player) {
         boolean rolled = getPlayerRolledStatus(player);
-        System.out.println("rolled: " + rolled);
         int betAmount = player.getBet();
 
-        //check if player roll dice in the round
+        //check if player rolled dice already in the round
         if (rolled) {
             mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
             mainFrame.getToolBar().getRollButton().setEnabled(false);

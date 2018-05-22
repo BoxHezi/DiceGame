@@ -6,9 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class StatusBar extends JToolBar {
-    private JLabel idStatus = new JLabel(" Left");
-    private JLabel nameStatus = new JLabel(" Center");
-    private JLabel pointStatus = new JLabel(" Right");
+    private JLabel idStatus = new JLabel(" ID");
+    private JLabel nameStatus = new JLabel(" Name");
+    private JLabel pointStatus = new JLabel(" Point");
 
     public StatusBar() {
         setLayout(new GridLayout(1, 3));
