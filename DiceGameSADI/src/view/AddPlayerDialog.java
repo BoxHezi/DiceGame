@@ -5,7 +5,7 @@ import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class AddPlayerDialog extends JOptionPane {
     private MainFrame mainFrame;
@@ -14,21 +14,19 @@ public class AddPlayerDialog extends JOptionPane {
     private String name = "";
     private String pointStr = "";
 
-    private ArrayList<Player> players;
-
     public AddPlayerDialog(MainFrame mainFrame, GameEngine gameEngine) {
         this.mainFrame = mainFrame;
-        players = getAllPlayers(gameEngine);
         inputID(gameEngine);
     }
 
     private void inputID(GameEngine gameEngine) {
         do {
             id = showInputDialog("Please input ID:");
-            if (null == id || id.equals(String.valueOf(CANCEL_OPTION))) {
+            if (null == id) {
                 return;
             }
 
+            List<Player> players = (List<Player>) gameEngine.getAllPlayers();
             for (Player player : players) {
                 if (player.getPlayerId().equalsIgnoreCase(id)) {
                     id = "";
@@ -43,7 +41,7 @@ public class AddPlayerDialog extends JOptionPane {
     private void inputName(GameEngine gameEngine) {
         do {
             name = showInputDialog("Please enter your name:");
-            if (null == name || name.equals(String.valueOf(CANCEL_OPTION))) {
+            if (null == name) {
                 return;
             }
         } while (name.matches("\\s+") || name.equals(""));
@@ -51,12 +49,14 @@ public class AddPlayerDialog extends JOptionPane {
     }
 
     private void inputPoint(GameEngine gameEngine) {
+        boolean validPoint;
         do {
             pointStr = showInputDialog("Please enter point amount");
-            if (pointStr.equals(String.valueOf(CANCEL_OPTION))) {
+            if (null == pointStr) {
                 return;
             }
-        } while (pointStr.matches("\\D+") || pointStr.equals(""));
+            validPoint = pointValidation(pointStr);
+        } while (!validPoint);
         confirmBox(gameEngine);
     }
 
@@ -74,8 +74,20 @@ public class AddPlayerDialog extends JOptionPane {
         }
     }
 
-    private ArrayList<Player> getAllPlayers(GameEngine gameEngine) {
-        return (ArrayList<Player>) gameEngine.getAllPlayers();
+    private boolean pointValidation(String pointStr) {
+        if (pointStr.matches("\\D+")) {
+            showMessageDialog(null, "Please input integer");
+            return false;
+        }
+        if (pointStr.equals("")) {
+            showMessageDialog(null, "Please input integer");
+            return false;
+        }
+        if (Integer.valueOf(pointStr) <= 0) {
+            showMessageDialog(null, "Invalid amount, please input amount greater than 0");
+            return false;
+        }
+        return true;
     }
 
     public String getId() {
@@ -84,9 +96,5 @@ public class AddPlayerDialog extends JOptionPane {
 
     public String getName() {
         return name;
-    }
-
-    public int getPoint() {
-        return Integer.valueOf(pointStr);
     }
 }
