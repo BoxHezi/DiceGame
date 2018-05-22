@@ -18,7 +18,7 @@ public class DicePanel extends JPanel {
     private JLabel dice2 = new JLabel(new ImageIcon(diceArray[0]));
     private JLabel totalValue = new JLabel("0");
 
-    public DicePanel(MainFrame mainFrame) {
+    public DicePanel() {
         setLayout(new BorderLayout());
 
         JPanel dicePanel = new JPanel();
@@ -54,12 +54,15 @@ public class DicePanel extends JPanel {
      *  update dice image to show the dice rolling
      * @param dicePair dice pair to get dice result
      */
-    public void updateDiceImg(DicePair dicePair) {
+    public void updateDicePanelInfo(DicePair dicePair) {
         int valueIndex1 = dicePair.getDice1() - 1;
         int valueIndex2 = dicePair.getDice2() - 1;
 
         dice1.setIcon(new ImageIcon(diceArray[valueIndex1]));
         dice2.setIcon(new ImageIcon(diceArray[valueIndex2]));
+
+        int point = dicePair.getDice1() + dicePair.getDice2();
+        totalValue.setText(String.valueOf(point));
     }
 
     /**
@@ -68,6 +71,6 @@ public class DicePanel extends JPanel {
      */
     public void setDiceImg(Player player) {
         DicePair playerResult = player.getRollResult();
-        updateDiceImg(playerResult);
+        updateDicePanelInfo(playerResult);
     }
 }

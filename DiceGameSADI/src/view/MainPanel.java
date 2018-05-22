@@ -16,7 +16,7 @@ public class MainPanel extends JPanel {
         splitPane.setEnabled(false);
 
         splitPane.setLeftComponent(new GameDetailPanel(mainFrame, gameEngine));
-        splitPane.setRightComponent(new DicePanel(mainFrame));
+        splitPane.setRightComponent(new DicePanel());
 
         add(splitPane, BorderLayout.CENTER);
     }

@@ -1,6 +1,5 @@
 package controller;
 
-import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.DicePanel;
 import view.GameDetailPanel;
@@ -14,7 +13,7 @@ import javax.swing.event.ListSelectionListener;
 public class GameDetailController implements ListSelectionListener {
     private MainFrame mainFrame;
 
-    public GameDetailController(MainFrame mainFrame, GameEngine gameEngine) {
+    public GameDetailController(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
 

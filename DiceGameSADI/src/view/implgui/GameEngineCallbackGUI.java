@@ -41,7 +41,8 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
     }
 
     /**
-     *  update dice pair while rolling
+     * update dice pair while rolling
+     *
      * @param dicePair dice pair
      */
     private void rolling(DicePair dicePair) {
@@ -49,16 +50,14 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
             @Override
             public void run() {
                 DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
-                int totalDiceValue = dicePair.getDice1() + dicePair.getDice2();
-                dicePanel.getTotalValue().setText(String.valueOf(totalDiceValue));
-
-                dicePanel.updateDiceImg(dicePair);
+                dicePanel.updateDicePanelInfo(dicePair);
             }
         });
     }
 
     /**
-     *  update dice image after rolling finished
+     * update dice image after rolling finished
+     *
      * @param result dice pair result
      */
     private void displayResult(DicePair result) {
@@ -72,13 +71,14 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
                 mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);
                 mainFrame.getToolBar().getRollButton().setEnabled(false);
 
-                dicePanel.updateDiceImg(result);
+                dicePanel.updateDicePanelInfo(result);
             }
         });
     }
 
     /**
-     *  displaye game result detail in the text area
+     * displaye game result detail in the text area
+     *
      * @param houseResult house result
      */
     private void recordGameProgress(DicePair houseResult) {
@@ -101,7 +101,8 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
     }
 
     /**
-     *  a method to reset all player's bet amount to let player enter bet amount again
+     * a method to reset all player's bet amount to let player enter bet amount again
+     *
      * @param players player to reset bet amount
      */
     private void resetPlayerBetAmount(ArrayList<Player> players) {

@@ -13,8 +13,6 @@ public class MenuBar extends JMenuBar {
     private static final String SAVE_GAME_COMMAND = "save game";
     private static final String LOAD_GAME_COMMAND = "load game";
 
-    private ArrayList<JMenu> menus = new ArrayList<>();
-
     private JMenuItem loadGame = new JMenuItem("Load Game");
     private JMenuItem saveGame = new JMenuItem("Save Game");
     private JMenuItem exit = new JMenuItem("Exit");
@@ -36,6 +34,7 @@ public class MenuBar extends JMenuBar {
         option.add(addPlayer);
         add(option);
 
+        ArrayList<JMenu> menus = new ArrayList<>();
         menus.add(file);
         menus.add(option);
         initializeMenuItem(menus);

@@ -108,6 +108,10 @@ public class ToolBarController extends JOptionPane implements ActionListener {
         return (Player) playerList.getSelectedValue();
     }
 
+    /**
+     *  method to check if the house can roll
+     * @return true if every player has rolled
+     */
     private boolean canHouseRoll() {
         GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
         HashMap<Player, Boolean> playerRollStatus = gameDetailPanel.getPlayerRollMap();

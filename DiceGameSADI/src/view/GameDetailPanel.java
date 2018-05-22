@@ -20,7 +20,7 @@ public class GameDetailPanel extends JSplitPane {
     public GameDetailPanel(MainFrame mainFrame, GameEngine gameEngine) {
         setLayout(new BorderLayout());
 
-        playerList.addListSelectionListener(new GameDetailController(mainFrame, gameEngine));
+        playerList.addListSelectionListener(new GameDetailController(mainFrame));
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         splitPane.setResizeWeight(0.5);

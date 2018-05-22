@@ -10,7 +10,7 @@ public class StatusBar extends JToolBar {
     private JLabel nameStatus = new JLabel(" Center");
     private JLabel pointStatus = new JLabel(" Right");
 
-    public StatusBar(MainFrame mainFrame) {
+    public StatusBar() {
         setLayout(new GridLayout(1, 3));
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
