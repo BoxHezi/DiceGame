@@ -10,6 +10,7 @@ import view.implgui.interfaces.GameEngineCallback;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameEngineCallbackGUI implements GameEngineCallback {
     private MainFrame mainFrame;
@@ -36,8 +37,11 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
     @Override
     public void houseResult(DicePair result, GameEngine gameEngine) {
         displayResult(result);
-        recordGameProgress(result);
+        recordGameProgress(result, gameEngine);
         resetPlayerBetAmount((ArrayList<Player>) gameEngine.getAllPlayers());
+
+        // set place bet button to be able to click to let player place bet
+        mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);
     }
 
     /**
@@ -65,10 +69,10 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
             @Override
             public void run() {
                 DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
-                int totalDiceValue = result.getDice1() + result.getDice2();
-                dicePanel.getTotalValue().setText(String.valueOf(totalDiceValue));
 
-                mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);
+                // disable place bet and roll button to avoid one player place bet or roll dice twice
+                // in one round
+                mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
                 mainFrame.getToolBar().getRollButton().setEnabled(false);
 
                 dicePanel.updateDicePanelInfo(result);
@@ -81,7 +85,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
      *
      * @param houseResult house result
      */
-    private void recordGameProgress(DicePair houseResult) {
+    private void recordGameProgress(DicePair houseResult, GameEngine gameEngine) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -94,6 +98,14 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
                 }
                 textArea.append(String.format("House Result: %d\n", houseResult.getDice1() + houseResult.getDice2()));
 
+                Player winner = getWinner((List<Player>) gameEngine.getAllPlayers(), houseResult);
+                if (null != winner) {
+                    textArea.append(String.format("The winner is: %s\n", winner.getPlayerName()));
+                } else {
+                    textArea.append("The winner is the house!\n");
+                }
+
+                //update player's info in status
                 Player selectedPlayer = (Player) gameDetailPanel.getPlayerList().getSelectedValue();
                 mainFrame.getStatusBar().displayPlayerInfo(selectedPlayer);
             }
@@ -109,5 +121,33 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
         for (Player player : players) {
             player.placeBet(0);
         }
+    }
+
+    /**
+     * method to get winner in order to display to the textarea for game progress
+     *
+     * @param players     all the players
+     * @param houseResult house result
+     * @return one player is there is a winner, null if the house is the winner
+     */
+    private Player getWinner(List<Player> players, DicePair houseResult) {
+        Player winner = null;
+        int winnerResult = 0;
+
+        for (Player player : players) {
+            int playerResult = player.getRollResult().getDice1() + player.getRollResult().getDice2();
+            if (playerResult > (houseResult.getDice1() + houseResult.getDice2())) {
+                if (playerResult > winnerResult) {
+                    winner = player;
+                    winnerResult = playerResult;
+                }
+            }
+        }
+
+        if (null != winner) {
+            return winner;
+        }
+
+        return null;
     }
 }
