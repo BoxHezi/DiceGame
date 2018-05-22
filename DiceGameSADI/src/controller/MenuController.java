@@ -51,8 +51,9 @@ public class MenuController extends JOptionPane implements ActionListener {
         GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
         JList playerList = gameDetailPanel.getPlayerList();
         //if there are already have player(s), reject load to avoid duplicate player ID
-        if (null != playerList) {
+        if (playerList.getModel().getSize() > 0) {
             showMessageDialog(null, "Already have player(s), cannot load the file!");
+            return;
         }
 
         Scanner loader = null;
