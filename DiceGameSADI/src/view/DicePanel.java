@@ -41,7 +41,8 @@ public class DicePanel extends JPanel {
     }
 
     /**
-     *  update dice image to show the dice rolling
+     * update dice image to show the dice rolling
+     *
      * @param dicePair dice pair to get dice result
      */
     public void updateDicePanelInfo(DicePair dicePair) {
@@ -56,7 +57,8 @@ public class DicePanel extends JPanel {
     }
 
     /**
-     *  if the player selected has rolled already, show the dice result image
+     * if the player selected has rolled already, show the dice result image
+     *
      * @param player selected player
      */
     public void setDiceImg(Player player) {

@@ -74,6 +74,12 @@ public class AddPlayerDialog extends JOptionPane {
         }
     }
 
+    /**
+     * check if player input valid point
+     *
+     * @param pointStr point in String which need to be converted to integer
+     * @return true if the point enter is acceptable
+     */
     private boolean pointValidation(String pointStr) {
         if (pointStr.matches("\\D+")) {
             showMessageDialog(null, "Please input integer");

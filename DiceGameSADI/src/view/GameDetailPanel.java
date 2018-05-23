@@ -34,6 +34,11 @@ public class GameDetailPanel extends JSplitPane {
         resetRollStatus(gameEngine);
     }
 
+    /**
+     * reset all player roll status to unroll
+     *
+     * @param gameEngine gameEngine to get all players information
+     */
     public void resetRollStatus(GameEngine gameEngine) {
         ArrayList<Player> players = (ArrayList<Player>) gameEngine.getAllPlayers();
         for (Player player : players) {
@@ -49,6 +54,11 @@ public class GameDetailPanel extends JSplitPane {
         return textArea;
     }
 
+    /**
+     * add player to the JList
+     *
+     * @param player player to be added
+     */
     public void addPlayer(Player player) {
         playerModel.add(playerModel.getSize(), player);
         playerRollMap.put(player, false);
@@ -58,6 +68,12 @@ public class GameDetailPanel extends JSplitPane {
         return playerRollMap;
     }
 
+    /**
+     * update player's roll status
+     *
+     * @param player player selected
+     * @param rolled have the selected player rolled
+     */
     public void updateRollStatus(Player player, boolean rolled) {
         playerRollMap.put(player, rolled);
     }

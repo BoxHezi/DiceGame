@@ -27,6 +27,11 @@ public class StatusBar extends JToolBar {
         return pointStatus;
     }
 
+    /**
+     * display player's information in the status bar
+     *
+     * @param player selected player
+     */
     public void displayPlayerInfo(Player player) {
         idStatus.setText(" " + player.getPlayerId());
         nameStatus.setText(" " + player.getPlayerName());

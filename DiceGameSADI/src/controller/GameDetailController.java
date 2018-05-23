@@ -63,6 +63,7 @@ public class GameDetailController implements ListSelectionListener {
 
     /**
      * check if have the selected player rolled in the current round
+     *
      * @param player selected player
      * @return true if the player has rolled for the current round
      */
