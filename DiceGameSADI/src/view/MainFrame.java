@@ -26,9 +26,9 @@ public class MainFrame extends JFrame {
 
     private void initialiseMainFrame() {
         setTitle("DiceGame");
-        setSize(500, 500);
+        setSize(600, 600);
         setMaximizedBounds(new Rectangle(0, 0, 800, 800));
-        setMinimumSize(new Dimension(200, 200));
+        setMinimumSize(new Dimension(500, 500));
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //set frame appears in the centre of the screen
