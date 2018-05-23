@@ -9,7 +9,6 @@ import java.awt.*;
 public class ToolBar extends JToolBar {
     private static final String PLACE_BET_COMMAND = "Place Bet";
     private static final String ROLL_COMMAND = "Roll Dice";
-    private static final String BET_AMOUNT_COMMAND = "Bet Amount";
     private static final String HOUSE_ROLL_COMMAND = "House Roll";
 
     private JTextField betAmount = new JTextField();
@@ -41,12 +40,10 @@ public class ToolBar extends JToolBar {
     private void initializeElement() {
         placeBet.setActionCommand(PLACE_BET_COMMAND);
         rollButton.setActionCommand(ROLL_COMMAND);
-        betAmount.setActionCommand(BET_AMOUNT_COMMAND);
         houseRollButton.setActionCommand(HOUSE_ROLL_COMMAND);
 
         placeBet.addActionListener(toolBarController);
         rollButton.addActionListener(toolBarController);
-        betAmount.addActionListener(toolBarController);
         houseRollButton.addActionListener(toolBarController);
 
         rollButton.setEnabled(false);
@@ -59,10 +56,6 @@ public class ToolBar extends JToolBar {
 
     public String getRollCommand() {
         return ROLL_COMMAND;
-    }
-
-    public String getBetAmountCommand() {
-        return BET_AMOUNT_COMMAND;
     }
 
     public String getHouseRollCommand() {

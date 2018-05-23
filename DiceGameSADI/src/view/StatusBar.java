@@ -23,14 +23,6 @@ public class StatusBar extends JToolBar {
         add(pointStatus);
     }
 
-    public JLabel getIdStatus() {
-        return idStatus;
-    }
-
-    public JLabel getNameStatus() {
-        return nameStatus;
-    }
-
     public JLabel getPointStatus() {
         return pointStatus;
     }

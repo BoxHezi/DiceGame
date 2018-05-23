@@ -34,22 +34,6 @@ public class DicePanel extends JPanel {
         add(totalPanel, BorderLayout.CENTER);
     }
 
-    public JLabel getDice1() {
-        return dice1;
-    }
-
-    public JLabel getDice2() {
-        return dice2;
-    }
-
-    public JLabel getTotalValue() {
-        return totalValue;
-    }
-
-    public String[] getDiceArray() {
-        return diceArray;
-    }
-
     /**
      *  update dice image to show the dice rolling
      * @param dicePair dice pair to get dice result

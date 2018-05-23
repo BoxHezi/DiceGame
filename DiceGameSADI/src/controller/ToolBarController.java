@@ -23,7 +23,6 @@ public class ToolBarController extends JOptionPane implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getActionCommand().equalsIgnoreCase(mainFrame.getToolBar().getRollCommand())) {
-            //call roll dice method
             rollDice(true);
         } else if (event.getActionCommand().equalsIgnoreCase(mainFrame.getToolBar().getPlaceBetCommand())) {
             placeBet();
@@ -48,18 +47,22 @@ public class ToolBarController extends JOptionPane implements ActionListener {
                 showMessageDialog(null, "Illegal amount, try again!");
             }
 
-            int validaPoint = point;
+            int finalPoint = point;
             new Thread() {
                 @Override
                 public void run() {
-                    boolean enough = gameEngine.placeBet(player, validaPoint);
+                    boolean enough = gameEngine.placeBet(player, finalPoint);
                     if (!enough) {
                         showMessageDialog(null, "Not enough point!");
-                    } else if (validaPoint > 0) {
+                    } else if (finalPoint > 0) {
                         showMessageDialog(null, "Bet placed!");
                         mainFrame.getStatusBar().getPointStatus().setText(String.valueOf(player.getPoints()));
+
+                        //update button status
                         mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
                         mainFrame.getToolBar().getRollButton().setEnabled(true);
+
+                        //reset text area for bet amount to nothing
                         mainFrame.getToolBar().getBetAmountText().setText("");
                     }
                 }
@@ -67,6 +70,12 @@ public class ToolBarController extends JOptionPane implements ActionListener {
         }
     }
 
+    /**
+     * roll dice for both player and house
+     *
+     * @param isPlayer true if it is player round
+     *                 false if it is house rolling
+     */
     private void rollDice(boolean isPlayer) {
         new Thread() {
             @Override
@@ -94,6 +103,12 @@ public class ToolBarController extends JOptionPane implements ActionListener {
         }.start();
     }
 
+    /**
+     * method to check if there is player selected
+     *
+     * @param selectedPlayer selected player from JList
+     * @return true if there is a player selected
+     */
     private boolean validationCheck(Player selectedPlayer) {
         if (null == selectedPlayer) {
             showMessageDialog(null, "Please select a player");
@@ -109,7 +124,8 @@ public class ToolBarController extends JOptionPane implements ActionListener {
     }
 
     /**
-     *  method to check if the house can roll
+     * method to check if the house can roll
+     *
      * @return true if every player has rolled
      */
     private boolean canHouseRoll() {

@@ -32,8 +32,9 @@ public class GameDetailController implements ListSelectionListener {
         }
     }
 
-    /**K
+    /**
      * update UI for selected player to limit the player option
+     *
      * @param player selected player
      */
     private void updateUIStatus(Player player) {
@@ -42,13 +43,15 @@ public class GameDetailController implements ListSelectionListener {
 
         //check if player rolled dice already in the round
         if (rolled) {
+            //set all button for player to false if the player has rolled
             mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
             mainFrame.getToolBar().getRollButton().setEnabled(false);
 
             DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
             dicePanel.setDiceImg(player);
         } else {
-            if (betAmount <=0 ) {
+            //if the player placed bet, set roll button to true, otherwise false
+            if (betAmount <= 0) {
                 mainFrame.getToolBar().getPlaceBetButton().setEnabled(true);
                 mainFrame.getToolBar().getRollButton().setEnabled(false);
             } else {
@@ -58,6 +61,11 @@ public class GameDetailController implements ListSelectionListener {
         }
     }
 
+    /**
+     * check if have the selected player rolled in the current round
+     * @param player selected player
+     * @return true if the player has rolled for the current round
+     */
     private boolean getPlayerRolledStatus(Player player) {
         GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
         return gameDetailPanel.getPlayerRollMap().get(player);

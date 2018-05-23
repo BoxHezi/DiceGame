@@ -43,8 +43,9 @@ public class MenuController extends JOptionPane implements ActionListener {
     }
 
     /**
-     *  load game information from file
-     *  if there are some player in the game engine, reject to load
+     * load game information from file
+     * if there are some player in the game engine, reject to load
+     *
      * @param gameEngine game engine to add load player information
      */
     private void loadGame(GameEngine gameEngine) {
@@ -79,14 +80,15 @@ public class MenuController extends JOptionPane implements ActionListener {
     }
 
     /**
-     *  save game info to a file
+     * save game info to a file
+     *
      * @param gameEngine game engine to retrieve game information
      */
     private void saveGame(GameEngine gameEngine) {
         PrintWriter printWriter = null;
 
         try {
-           printWriter = new PrintWriter(GAME_RECORD_FILE);
+            printWriter = new PrintWriter(GAME_RECORD_FILE);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
