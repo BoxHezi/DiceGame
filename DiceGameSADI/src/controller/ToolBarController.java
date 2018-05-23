@@ -31,6 +31,9 @@ public class ToolBarController extends JOptionPane implements ActionListener {
         }
     }
 
+    /**
+     * place bet, create new thread when invoke method in GameEngineImpl
+     */
     private void placeBet() {
         //get player select
         Player player = getSelectedPlayer();
@@ -117,6 +120,11 @@ public class ToolBarController extends JOptionPane implements ActionListener {
         return true;
     }
 
+    /**
+     * get selected player from JList
+     *
+     * @return player selected
+     */
     private Player getSelectedPlayer() {
         GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
         JList playerList = gameDetailPanel.getPlayerList();
