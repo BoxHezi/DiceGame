@@ -19,19 +19,25 @@ public class DicePanel extends JPanel {
     private JLabel totalValue = new JLabel("0");
 
     public DicePanel() {
-        setLayout(new BorderLayout());
+        setLayout(new GridBagLayout());
+
+        JPanel container = new JPanel();
+        container.setLayout(new BorderLayout());
 
         JPanel dicePanel = new JPanel();
         dicePanel.setLayout(new FlowLayout());
         dicePanel.add(dice1);
         dicePanel.add(dice2);
-        add(dicePanel, BorderLayout.NORTH);
+        container.add(dicePanel, BorderLayout.NORTH);
 
         JPanel totalPanel = new JPanel();
         totalPanel.setLayout(new FlowLayout());
         totalPanel.add(new JLabel("Total: "));
         totalPanel.add(totalValue);
-        add(totalPanel, BorderLayout.CENTER);
+        container.add(totalPanel, BorderLayout.CENTER);
+
+        //make dice image and total value display in the center of the panel
+        add(container, new GridBagConstraints());
     }
 
     /**
