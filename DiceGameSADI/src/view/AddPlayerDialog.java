@@ -19,6 +19,11 @@ public class AddPlayerDialog extends JOptionPane {
         inputID(gameEngine);
     }
 
+    /**
+     * method to input new player's ID, validation check for ID will be done as well
+     *
+     * @param gameEngine gameEngine to pass tp inputName
+     */
     private void inputID(GameEngine gameEngine) {
         do {
             id = showInputDialog("Please input ID:");
@@ -38,6 +43,11 @@ public class AddPlayerDialog extends JOptionPane {
         inputName(gameEngine);
     }
 
+    /**
+     * method to input name
+     *
+     * @param gameEngine gameEngine to pass to inputPoint
+     */
     private void inputName(GameEngine gameEngine) {
         do {
             name = showInputDialog("Please enter your name:");
@@ -48,6 +58,11 @@ public class AddPlayerDialog extends JOptionPane {
         inputPoint(gameEngine);
     }
 
+    /**
+     * method to input new player's point
+     *
+     * @param gameEngine gameEngine pass to confirmBox
+     */
     private void inputPoint(GameEngine gameEngine) {
         boolean validPoint;
         do {
@@ -60,6 +75,11 @@ public class AddPlayerDialog extends JOptionPane {
         confirmBox(gameEngine);
     }
 
+    /**
+     * confirm input date, if cancel is pressed, nothing will be done
+     *
+     * @param gameEngine gameEngine need to retrieve player list
+     */
     private void confirmBox(GameEngine gameEngine) {
         int confirm = showConfirmDialog(null, "Your ID is: " + id + "\nYour name is: "
                 + name + "\nYour point is: " + pointStr, "Confirm", YES_NO_OPTION);
@@ -69,7 +89,7 @@ public class AddPlayerDialog extends JOptionPane {
             gameEngine.addPlayer(newPlayer);
 
             //add player to GUI for user to select
-            GameDetailPanel detailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+            GameDetailPanel detailPanel = mainFrame.getMainPanel().getLeftComponent();
             detailPanel.addPlayer(newPlayer);
         }
     }

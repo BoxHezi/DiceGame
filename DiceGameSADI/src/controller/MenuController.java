@@ -49,7 +49,7 @@ public class MenuController extends JOptionPane implements ActionListener {
      * @param gameEngine game engine to add load player information
      */
     private void loadGame(GameEngine gameEngine) {
-        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        GameDetailPanel gameDetailPanel = mainFrame.getMainPanel().getLeftComponent();
         JList playerList = gameDetailPanel.getPlayerList();
         //if there are already have player(s), reject load to avoid duplicate player ID
         if (playerList.getModel().getSize() > 0) {
@@ -99,7 +99,7 @@ public class MenuController extends JOptionPane implements ActionListener {
                 printWriter.println(player.getPlayerId() + "," + player.getPlayerName() + "," + player.getPoints());
             }
             printWriter.close();
-            System.exit(0);
+            showMessageDialog(null, "Game Saved!");
         }
     }
 }

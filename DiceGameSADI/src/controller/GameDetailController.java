@@ -42,9 +42,11 @@ public class GameDetailController implements ListSelectionListener {
         boolean rolled = getPlayerRolledStatus(player);
         int betAmount = player.getBet();
 
-        if (!rolling) {
-            DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
-            dicePanel.setDiceImg(player);
+        //if the selected player is rolling, disable buttons to avoid unexpected behaviours
+        if (rolling) {
+            mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
+            mainFrame.getToolBar().getRollButton().setEnabled(false);
+            return;
         }
 
         //check if player rolled dice already in the round
@@ -53,7 +55,7 @@ public class GameDetailController implements ListSelectionListener {
             mainFrame.getToolBar().getPlaceBetButton().setEnabled(false);
             mainFrame.getToolBar().getRollButton().setEnabled(false);
 
-            DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
+            DicePanel dicePanel = mainFrame.getMainPanel().getRightComponent();
             dicePanel.setDiceImg(player);
         } else {
             //if the player placed bet, set roll button to true, otherwise false
@@ -74,7 +76,7 @@ public class GameDetailController implements ListSelectionListener {
      * @return true if the player has rolled for the current round
      */
     private boolean getPlayerRolledStatus(Player player) {
-        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        GameDetailPanel gameDetailPanel = mainFrame.getMainPanel().getLeftComponent();
         return gameDetailPanel.getPlayerRollStatusMap().get(player);
     }
 
@@ -85,7 +87,7 @@ public class GameDetailController implements ListSelectionListener {
      * @return true if the player is rolling currently
      */
     private boolean getPlayerRollingStatus(Player player) {
-        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        GameDetailPanel gameDetailPanel = mainFrame.getMainPanel().getLeftComponent();
         return gameDetailPanel.getPlayerRollingMap().get(player);
     }
 }

@@ -56,7 +56,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
+                DicePanel dicePanel = mainFrame.getMainPanel().getRightComponent();
                 if (!isHouse) {
                     GameDetailPanel gameDetailPanel = getGameDetailPanel();
                     Player player = getSelectedPlayer();
@@ -92,7 +92,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
+                DicePanel dicePanel = mainFrame.getMainPanel().getRightComponent();
                 if (!isHouse) {
                     GameDetailPanel gameDetailPanel = getGameDetailPanel();
                     Player player = getSelectedPlayer();
@@ -197,19 +197,21 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
 
     /**
      * method to get selected player
+     *
      * @return selected player
      */
     private Player getSelectedPlayer() {
-        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        GameDetailPanel gameDetailPanel = mainFrame.getMainPanel().getLeftComponent();
         JList players = gameDetailPanel.getPlayerList();
         return (Player) players.getSelectedValue();
     }
 
     /**
      * method to get game detail panel
+     *
      * @return game detail panel
      */
     private GameDetailPanel getGameDetailPanel() {
-        return (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        return mainFrame.getMainPanel().getLeftComponent();
     }
 }

@@ -82,7 +82,7 @@ public class ToolBarController extends JOptionPane implements ActionListener {
         new Thread() {
             @Override
             public void run() {
-                GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+                GameDetailPanel gameDetailPanel = mainFrame.getMainPanel().getLeftComponent();
                 Player player = getSelectedPlayer();
                 if (isPlayer) {
                     gameDetailPanel.updateRollingStatus(player, true);
@@ -125,7 +125,7 @@ public class ToolBarController extends JOptionPane implements ActionListener {
      * @return player selected
      */
     private Player getSelectedPlayer() {
-        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        GameDetailPanel gameDetailPanel = mainFrame.getMainPanel().getLeftComponent();
         JList playerList = gameDetailPanel.getPlayerList();
         return (Player) playerList.getSelectedValue();
     }
@@ -137,7 +137,7 @@ public class ToolBarController extends JOptionPane implements ActionListener {
      * @return true if every player has rolled
      */
     private boolean canHouseRoll() {
-        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        GameDetailPanel gameDetailPanel = mainFrame.getMainPanel().getLeftComponent();
         Map<Player, Boolean> playerRollStatus = gameDetailPanel.getPlayerRollStatusMap();
         for (Map.Entry<Player, Boolean> rolled : playerRollStatus.entrySet()) {
             if (!rolled.getValue()) {
