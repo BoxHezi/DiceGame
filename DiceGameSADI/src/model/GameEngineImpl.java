@@ -1,5 +1,6 @@
 package model;
 
+import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.implgui.interfaces.GameEngineCallback;
@@ -18,37 +19,41 @@ public class GameEngineImpl implements GameEngine {
 
     @Override
     public void rollPlayer(Player player, int initialDelay, int finalDelay, int delayIncrement) {
-        for (GameEngineCallback gameEngineCallback : callbackList) {
-            for (int delay = initialDelay; delay < finalDelay; delay += delayIncrement) {
-                try {
-                    Thread.sleep(delay);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                DicePairImpl tempDicePair = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
-                gameEngineCallback.intermediateResult(player, tempDicePair, this);
+        for (int delay = initialDelay; delay < finalDelay; delay += delayIncrement) {
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            DicePairImpl diceResult = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
+            DicePair tempDicePair = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
+            for (GameEngineCallback callback : callbackList) {
+                callback.intermediateResult(player, tempDicePair, this);
+            }
+        }
+        DicePair diceResult = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
+        for (GameEngineCallback callback : callbackList) {
             player.setRollResult(diceResult);
-            gameEngineCallback.result(player, diceResult, this);
+            callback.result(player, diceResult, this);
         }
     }
 
     @Override
     public void rollHouse(int initialDelay, int finalDelay, int delayIncrement) {
-        for (GameEngineCallback gameEngineCallback : callbackList) {
-            for (int delay = initialDelay; delay < finalDelay; delay += delayIncrement) {
-                try {
-                    Thread.sleep(delay);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                DicePairImpl tempDicePair = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
-                gameEngineCallback.intermediateHouseResult(tempDicePair, this);
+        for (int delay = initialDelay; delay < finalDelay; delay += delayIncrement) {
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            DicePairImpl diceResult = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
+            DicePair tempDicePair = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
+            for (GameEngineCallback callback : callbackList) {
+                callback.intermediateHouseResult(tempDicePair, this);
+            }
+        }
+        DicePair diceResult = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
+        for (GameEngineCallback callback : callbackList) {
             compareResult(diceResult.getDice1() + diceResult.getDice2());
-            gameEngineCallback.houseResult(diceResult, this);
+            callback.houseResult(diceResult, this);
         }
     }
 
