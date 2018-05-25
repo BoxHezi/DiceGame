@@ -8,7 +8,6 @@ import view.MainFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ToolBarController extends JOptionPane implements ActionListener {
@@ -86,16 +85,16 @@ public class ToolBarController extends JOptionPane implements ActionListener {
                 GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
                 Player player = getSelectedPlayer();
                 if (isPlayer) {
-                    gameDetailPanel.updateRollStatus(player, true);
+                    gameDetailPanel.updateRollingStatus(player, true);
 
                     //disable roll button to avoid the same player click it twice
                     mainFrame.getToolBar().getRollButton().setEnabled(false);
-                    gameEngine.rollPlayer(player, 0, 100, 20);
+                    gameEngine.rollPlayer(player, 0, 500, 20);
 
                     //enable house roll button after at least one player roll
                     mainFrame.getToolBar().getHouseRollButton().setEnabled(canHouseRoll());
                 } else {
-                    gameEngine.rollHouse(0, 100, 20);
+                    gameEngine.rollHouse(0, 500, 20);
 
                     //disable house roll button to avoid unwanted behaviors
                     mainFrame.getToolBar().getHouseRollButton().setEnabled(false);
@@ -133,14 +132,21 @@ public class ToolBarController extends JOptionPane implements ActionListener {
 
     /**
      * method to check if the house can roll
+     * house can only roll after all player rolled
      *
      * @return true if every player has rolled
      */
     private boolean canHouseRoll() {
         GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
-        HashMap<Player, Boolean> playerRollStatus = gameDetailPanel.getPlayerRollMap();
+        Map<Player, Boolean> playerRollStatus = gameDetailPanel.getPlayerRollStatusMap();
         for (Map.Entry<Player, Boolean> rolled : playerRollStatus.entrySet()) {
             if (!rolled.getValue()) {
+                return false;
+            }
+        }
+        Map<Player, Boolean> playerRollingMap = gameDetailPanel.getPlayerRollingMap();
+        for (Map.Entry<Player, Boolean> rolling : playerRollingMap.entrySet()) {
+            if (rolling.getValue()) {
                 return false;
             }
         }

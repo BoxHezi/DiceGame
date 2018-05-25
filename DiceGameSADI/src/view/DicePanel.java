@@ -46,14 +46,20 @@ public class DicePanel extends JPanel {
      * @param dicePair dice pair to get dice result
      */
     public void updateDicePanelInfo(DicePair dicePair) {
-        int valueIndex1 = dicePair.getDice1() - 1;
-        int valueIndex2 = dicePair.getDice2() - 1;
+        if (null != dicePair) {
+            int valueIndex1 = dicePair.getDice1() - 1;
+            int valueIndex2 = dicePair.getDice2() - 1;
 
-        dice1.setIcon(new ImageIcon(diceArray[valueIndex1]));
-        dice2.setIcon(new ImageIcon(diceArray[valueIndex2]));
+            dice1.setIcon(new ImageIcon(diceArray[valueIndex1]));
+            dice2.setIcon(new ImageIcon(diceArray[valueIndex2]));
 
-        int point = dicePair.getDice1() + dicePair.getDice2();
-        totalValue.setText(String.valueOf(point));
+            int point = dicePair.getDice1() + dicePair.getDice2();
+            totalValue.setText(String.valueOf(point));
+        } else {
+            dice1.setIcon(new ImageIcon(diceArray[0]));
+            dice2.setIcon(new ImageIcon(diceArray[0]));
+            totalValue.setText(String.valueOf(2));
+        }
     }
 
     /**

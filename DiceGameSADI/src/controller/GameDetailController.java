@@ -37,9 +37,15 @@ public class GameDetailController implements ListSelectionListener {
      *
      * @param player selected player
      */
-    private void updateUIStatus(Player player) {
+    public void updateUIStatus(Player player) {
+        boolean rolling = getPlayerRollingStatus(player);
         boolean rolled = getPlayerRolledStatus(player);
         int betAmount = player.getBet();
+
+        if (!rolling) {
+            DicePanel dicePanel = (DicePanel) mainFrame.getMainPanel().getRightComponent();
+            dicePanel.setDiceImg(player);
+        }
 
         //check if player rolled dice already in the round
         if (rolled) {
@@ -69,6 +75,17 @@ public class GameDetailController implements ListSelectionListener {
      */
     private boolean getPlayerRolledStatus(Player player) {
         GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
-        return gameDetailPanel.getPlayerRollMap().get(player);
+        return gameDetailPanel.getPlayerRollStatusMap().get(player);
+    }
+
+    /**
+     * check if the selected player rolling
+     *
+     * @param player selected player
+     * @return true if the player is rolling currently
+     */
+    private boolean getPlayerRollingStatus(Player player) {
+        GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+        return gameDetailPanel.getPlayerRollingMap().get(player);
     }
 }
