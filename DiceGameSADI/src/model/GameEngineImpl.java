@@ -19,7 +19,8 @@ public class GameEngineImpl implements GameEngine {
 
     @Override
     public void rollPlayer(Player player, int initialDelay, int finalDelay, int delayIncrement) {
-        for (int delay = initialDelay; delay < finalDelay; delay += delayIncrement) {
+        int delay;
+        for (delay = initialDelay; delay < finalDelay; delay += delayIncrement) {
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
@@ -30,6 +31,11 @@ public class GameEngineImpl implements GameEngine {
                 callback.intermediateResult(player, tempDicePair, this);
             }
         }
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         DicePair diceResult = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
         for (GameEngineCallback callback : callbackList) {
             player.setRollResult(diceResult);
@@ -39,7 +45,8 @@ public class GameEngineImpl implements GameEngine {
 
     @Override
     public void rollHouse(int initialDelay, int finalDelay, int delayIncrement) {
-        for (int delay = initialDelay; delay < finalDelay; delay += delayIncrement) {
+        int delay;
+        for (delay = initialDelay; delay < finalDelay; delay += delayIncrement) {
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
@@ -49,6 +56,11 @@ public class GameEngineImpl implements GameEngine {
             for (GameEngineCallback callback : callbackList) {
                 callback.intermediateHouseResult(tempDicePair, this);
             }
+        }
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         DicePair diceResult = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
         compareResult(diceResult.getDice1() + diceResult.getDice2());

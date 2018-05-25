@@ -37,7 +37,7 @@ public class GameDetailController implements ListSelectionListener {
      *
      * @param player selected player
      */
-    public void updateUIStatus(Player player) {
+    private void updateUIStatus(Player player) {
         boolean rolling = getPlayerRollingStatus(player);
         boolean rolled = getPlayerRolledStatus(player);
         int betAmount = player.getBet();
