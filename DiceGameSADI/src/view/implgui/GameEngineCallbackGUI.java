@@ -134,7 +134,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback {
             @Override
             public void run() {
                 ArrayList<Player> players = (ArrayList<Player>) mainFrame.getGameEngine().getAllPlayers();
-                GameDetailPanel gameDetailPanel = (GameDetailPanel) mainFrame.getMainPanel().getLeftComponent();
+                GameDetailPanel gameDetailPanel = getGameDetailPanel();
                 JTextArea textArea = gameDetailPanel.getTextArea();
                 for (Player player : players) {
                     int playerRollResult = player.getRollResult().getDice1() + player.getRollResult().getDice2();

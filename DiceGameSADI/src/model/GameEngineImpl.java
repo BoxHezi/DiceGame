@@ -51,8 +51,8 @@ public class GameEngineImpl implements GameEngine {
             }
         }
         DicePair diceResult = new DicePairImpl(rollDice(), rollDice(), GameEngine.NUM_FACES);
+        compareResult(diceResult.getDice1() + diceResult.getDice2());
         for (GameEngineCallback callback : callbackList) {
-            compareResult(diceResult.getDice1() + diceResult.getDice2());
             callback.houseResult(diceResult, this);
         }
     }
